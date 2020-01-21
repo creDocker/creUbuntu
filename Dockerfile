@@ -8,12 +8,12 @@
 FROM ubuntu:18.04 
 MAINTAINER Michael Kahle <michael.kahle@yahoo.de>
 
-ARG BUILD_YEAR=2012
+ARG BUILD_YEAR=2018
 ARG BUILD_MONTH=0
 
 # version: yyyy.n for stable versions 
 #          0.yyyy for development - tagged automatically if base functionality is working 
-ENV CRE_VERSION 0.2012 
+ENV CRE_VERSION 0.2018 
 ENV UBUNTU_VERSION 18.04
 ENV OPENSSL_VERSION 1.0.2g
 
