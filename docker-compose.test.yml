@@ -1,5 +1,5 @@
 sut:
-  build: .
+  image: ${IMAGE_NAME}
   command: /cre/tests/ubuntu-test.sh
   volumes:
     - ./tests:/cre/tests
