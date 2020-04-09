@@ -65,6 +65,8 @@ COPY cre/ /cre/
 COPY /cre/shoreman.sh /usr/local/bin/shoreman
 RUN chmod 755 /usr/local/bin/shoreman
 
+RUN dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n
+
 # Set environment variables.
 ENV HOME /cre
 
