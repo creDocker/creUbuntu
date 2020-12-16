@@ -16,7 +16,7 @@ ARG BUILD_TAG=latest
 #          0.yyyy for development - tagged automatically if base functionality is working 
 ENV CRE_VERSION 2018.0 
 ENV UBUNTU_VERSION 18.04
-ENV OPENSSL_VERSION 1.0.2g
+ENV OPENSSL_VERSION 1.1.1
 
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
