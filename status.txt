@@ -6,3 +6,8 @@ Todo:
 tagging
 20.04 version...
 
+hashcash
+https://de.wikipedia.org/wiki/Hashcash
+http://manpages.ubuntu.com/manpages/trusty/man1/hashcash.1.html
+
+
