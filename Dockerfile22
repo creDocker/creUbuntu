@@ -8,13 +8,13 @@
 FROM ubuntu:20.04 
 MAINTAINER Michael Kahle <michael.kahle@yahoo.de>
 
-ARG BUILD_YEAR=2020
+ARG BUILD_YEAR=2021
 ARG BUILD_MONTH=0
 ARG BUILD_TAG=latest
 
 # version: yyyy.n for stable versions 
 #          0.yyyy for development - tagged automatically if base functionality is working 
-ENV CRE_VERSION 2020.0 
+ENV CRE_VERSION 0.2022 
 ENV UBUNTU_VERSION 20.04
 ENV OPENSSL_VERSION 1.1.1f
 
