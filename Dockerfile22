@@ -5,7 +5,7 @@
 # (adapted from https://github.com/dockerfile/ubuntu )
 
 # Pull base image.
-FROM ubuntu:20.10     
+FROM ubuntu:21.04    
 MAINTAINER Michael Kahle <michael.kahle@yahoo.de>
 
 ARG BUILD_YEAR=2021
@@ -15,7 +15,7 @@ ARG BUILD_TAG=latest
 # version: yyyy.n for stable versions 
 #          0.yyyy for development - tagged automatically if base functionality is working 
 ENV CRE_VERSION 0.2022 
-ENV UBUNTU_VERSION 20.04
+ENV UBUNTU_VERSION 21.04
 ENV OPENSSL_VERSION 1.1.1f
 
 ENV LANG en_US.UTF-8
