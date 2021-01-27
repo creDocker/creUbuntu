@@ -24,10 +24,11 @@ if [ $isInFile -eq 0 ]; then
     exit 1
 fi
 
+# Hirsute Hippo (development branch)  for 0.2022 -> 21.04
 isInFile=$(cat /cre/versions.txt | grep -cP "creUbuntu \t $UBUNTU_VERSION")
 if [ $isInFile -eq 0 ]; then
-    echo "[FAIL]: Wrong version of Ubuntu installed!"
-    exit 1
+    echo "[WARNING]: Wrong version of Ubuntu installed!"
+    #exit 1
 fi
 
 shoreman /cre/ubuntu-procfile &
