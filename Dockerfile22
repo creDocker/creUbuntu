@@ -15,7 +15,7 @@ ARG BUILD_TAG=latest
 # version: yyyy.n for stable versions 
 #          0.yyyy for development - tagged automatically if base functionality is working 
 ENV CRE_VERSION 0.2022 
-ENV UBUNTU_VERSION 21.04
+ENV UBUNTU_VERSION 21.04      # 21.10
 ENV OPENSSL_VERSION 1.1.1f
 
 ENV LANG en_US.UTF-8
@@ -44,12 +44,14 @@ RUN \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y apt-transport-https build-essential g++ gcc inotify-tools locales libc-dev make software-properties-common swig expect && \
-  apt-get install -y util-linux rename && \
+  apt-get install -y util-linux rename  jq amqp-tools && \
   apt-get install -y bc byobu curl git htop zlib1g logrotate man pwgen ssmtp sudo rsync unzip vim wget && \
   apt-get install -y hashcash libssh2-1 openssl openssh-server openssh-client ufw && \
   rm -rf /var/lib/apt/lists/*
 
 # libzip4  ->  php-zip ???
+# https://wiki.ubuntuusers.de/jq/
+# https://wlanboy.com/tutorial/rabbitmq-bash/
 
 RUN locale-gen en_US en_US.UTF-8 && \ 
     update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
