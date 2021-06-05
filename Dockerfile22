@@ -36,7 +36,7 @@ LABEL Name="Ubuntu for CRE" \
       Build_=$BUILD_TAG 
 
 #Workaround???
-RUN runc 1.0.0-rc93
+#RUN runc 1.0.0-rc93
 RUN apt clean
 
 # Install.
