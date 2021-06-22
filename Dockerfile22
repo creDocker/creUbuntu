@@ -17,6 +17,9 @@ ARG BUILD_TAG=latest
 ENV CRE_VERSION 0.2022 
 ENV UBUNTU_VERSION 21.04      # 21.10
 ENV OPENSSL_VERSION 1.1.1f
+ENV JAVA_VERSION 15
+#ENV NODE_VERSION 12.16.1 use  creNode...
+ENV PYTHON_VERSION 3.7
 
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
@@ -62,9 +65,25 @@ RUN locale-gen en_US en_US.UTF-8 && \
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+#Add Java JDK
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y openjdk-$JAVA_VERSION-jre && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+ENV JAVA_HOME /usr/lib/jvm/java-$JAVA_VERSION-openjdk-amd64/
+RUN export JAVA_HOME
+
+#Add Python
+RUN apt-get update && apt-get -y --no-install-recommends install python3 python3-setuptools python3-pip && apt-get clean 
+RUN pip3 install --upgrade pip 
+RUN pip3 install --upgrade wget
+#python3-dev removed here
+
 RUN mkdir -p /cre && touch /cre/versions.txt && \
     echo "$(date +'%F %R') \t creUbuntu \t $(cat /usr/lib/os-release | grep PRETTY | sed -e "s/^PRETTY_NAME=\"Ubuntu //" -e "s/\"$//")" >> /cre/versions.txt && \
-    echo "$(date +'%F %R') \t  $(openssl version)" >> /cre/versions.txt 
+    echo "$(date +'%F %R') \t  $(openssl version)" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t  Java \t $(java -version 2>&1 | grep version)" >> /cre/versions.txt && \  
+    echo "$(date +'%F %R') \t  Python3 \t $(python3 --version)" >> /cre/versions.txt 
 
 COPY cre/ /cre/
 # Copy shoremen to handle Procfile (Process Managment)

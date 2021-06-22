@@ -17,9 +17,9 @@ ARG BUILD_TAG=latest
 ENV CRE_VERSION 2020.0 
 ENV UBUNTU_VERSION 20.04
 ENV OPENSSL_VERSION 1.1.1f
-ENV JAVA_VERSION 11
+ENV JAVA_VERSION 13
 #ENV NODE_VERSION 12.16.1 use  creNode...
-ENV PYTHON_VERSION 3.6 
+ENV PYTHON_VERSION 3.8
 
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
@@ -73,7 +73,7 @@ RUN export JAVA_HOME
 #Add Python
 RUN apt-get update && apt-get -y --no-install-recommends install python3 python3-setuptools python3-pip && apt-get clean 
 RUN pip3 install --upgrade pip 
-
+RUN pip3 install --upgrade wget
 #python3-dev removed here
 
 
