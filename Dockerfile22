@@ -6,7 +6,7 @@
 
 # Pull base image.
 # 21.04 & 21.10 not working due signing of packages
-FROM ubuntu:20.40  
+FROM ubuntu:20.04  
 MAINTAINER Michael Kahle <michael.kahle@yahoo.de>
 
 ARG BUILD_YEAR=2021
