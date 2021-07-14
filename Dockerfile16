@@ -70,7 +70,7 @@ RUN apt-get update && apt-get -y --no-install-recommends install python3 python3
 RUN pip3 install --upgrade pip 
 ## RUN pip3 install wget # not working
 #rabbitMQ
-RUN pip3 install --upgrade pika
+## RUN pip3 install --upgrade pika # not working
 #python3-dev removed here
 
 RUN mkdir -p /cre && touch /cre/versions.txt && \
