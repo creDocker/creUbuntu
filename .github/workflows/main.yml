@@ -28,6 +28,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
+          file: ./Dockerfile20
           push: true
-          tags: tamboraorg/creubuntu:github
+          tags: tamboraorg/creubuntu:github20
 
