@@ -57,7 +57,7 @@ fi
 
 isInFile=$(cat /cre/versions.txt | grep -cP "Java \t openjdk version \"$JAVA_VERSION")
 isInFile8=$(cat /cre/versions.txt | grep -cP "Java \t openjdk version \"1.$JAVA_VERSION")
-if [ $isInFile -eq 0 ] || [ $isInFile8 -eq 0 ]; then
+if [ $isInFile -eq 0 ] OR [ $isInFile8 -eq 0 ]; then
     echo "[WARNING]: Wrong version of Java installed!"
     exit 1
 fi
