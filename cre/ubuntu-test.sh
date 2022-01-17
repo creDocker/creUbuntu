@@ -18,6 +18,12 @@ if [ $isInFile -eq 0 ]; then
     exit 1
 fi
 
+isInFile=$(cat /cre/versions.txt | grep -cP "OpenSSL $OPENSSL_VERSION")
+if [ $isInFile -eq 0 ]; then
+    echo "[WARNING]: Wrong version of OpenSSL installed!"
+    #exit 1
+fi
+
 isInFile=$(cat /cre/versions.txt | grep -c "creUbuntu")
 if [ $isInFile -eq 0 ]; then
     echo "[FAIL]: Ubuntu not installed!"
@@ -37,10 +43,10 @@ if [ $isInFile -eq 0 ]; then
     exit 1
 fi
 
-isInFile=$(cat /cre/versions.txt | grep -cP "Python3 \t $PYTHON_VERSION")
+isInFile=$(cat /cre/versions.txt | grep -cP "Python3 \t Python $PYTHON_VERSION")
 if [ $isInFile -eq 0 ]; then
     echo "[WARNING]: Wrong version of python installed!"
-    #exit 1
+    exit 1
 fi
 
 isInFile=$(cat /cre/versions.txt | grep -c "Java")
@@ -49,10 +55,10 @@ if [ $isInFile -eq 0 ]; then
     exit 1
 fi
 
-isInFile=$(cat /cre/versions.txt | grep -cP "Java \t $JAVA_VERSION")
+isInFile=$(cat /cre/versions.txt | grep -cP "Java \t openjdk version \"$JAVA_VERSION")
 if [ $isInFile -eq 0 ]; then
     echo "[WARNING]: Wrong version of Java installed!"
-    #exit 1
+    exit 1
 fi
 
 shoreman /cre/ubuntu-procfile &
