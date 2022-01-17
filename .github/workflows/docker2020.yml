@@ -35,6 +35,6 @@ jobs:
       -
         name: Test
         run: |
-          docker run tamboraorg/creubuntu:2020.0 --mount ./tests:/cre/tests /cre/tests/ubuntu-test.sh 
+          docker run --mount ./tests:/cre/tests tamboraorg/creubuntu:2020.0 /cre/tests/ubuntu-test.sh   
       
 
