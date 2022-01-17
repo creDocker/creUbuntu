@@ -31,6 +31,30 @@ if [ $isInFile -eq 0 ]; then
     exit 1
 fi
 
+isInFile=$(cat /cre/versions.txt | grep -c "Python3")
+if [ $isInFile -eq 0 ]; then
+    echo "[FAIL]: python not installed!"
+    exit 1
+fi
+
+isInFile=$(cat /cre/versions.txt | grep -cP "Python3 \t $PYTHON_VERSION")
+if [ $isInFile -eq 0 ]; then
+    echo "[WARNING]: Wrong version of python installed!"
+    #exit 1
+fi
+
+isInFile=$(cat /cre/versions.txt | grep -c "Java")
+if [ $isInFile -eq 0 ]; then
+    echo "[FAIL]: Java not installed!"
+    exit 1
+fi
+
+isInFile=$(cat /cre/versions.txt | grep -cP "Java \t $JAVA_VERSION")
+if [ $isInFile -eq 0 ]; then
+    echo "[WARNING]: Wrong version of Java installed!"
+    #exit 1
+fi
+
 shoreman /cre/ubuntu-procfile &
 
 sleep 2
