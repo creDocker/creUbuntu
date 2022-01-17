@@ -38,7 +38,7 @@ jobs:
           docker run tamboraorg/creubuntu:check22 /cre/ubuntu-test.sh  
       -
         name: Build and push
-        id: docker_build
+        id: docker_push
         uses: docker/build-push-action@v2
         with:
           file: ./Dockerfile22
