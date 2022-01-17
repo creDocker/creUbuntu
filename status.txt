@@ -13,3 +13,9 @@ http://manpages.ubuntu.com/manpages/trusty/man1/hashcash.1.html
 add python base and handling of requirement file
 https://www.kdnuggets.com/2021/04/dockerize-any-machine-learning-application.html
 
+
+github workflows
+https://github.com/docker/build-push-action#inputs
+
+
+

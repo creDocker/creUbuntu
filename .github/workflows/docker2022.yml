@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: dockerhub:2020.0
+name: dockerhub:2022.0
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          file: ./Dockerfile20
+          file: ./Dockerfile22
           push: true
-          tags: tamboraorg/creubuntu:2020.0, tamboraorg/creubuntu:latest 
+          tags: tamboraorg/creubuntu:2022.0 
 
