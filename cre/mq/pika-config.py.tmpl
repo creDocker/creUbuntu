@@ -36,6 +36,6 @@ def getPikaParameters():
 def getPikaQueues():
     queues = []
     {{ range $queueNameS := split $CurrentContainer.Env.RABBITMQ_QUEUE "," }} 
-    queues.append('{{ $dbNameS }}') 
+    queues.append('{{ $queueNameS }}') 
     {{ end }}
     return queues
