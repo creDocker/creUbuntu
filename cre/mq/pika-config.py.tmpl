@@ -1,0 +1,41 @@
+import pika
+
+#Current Container Name : {{ $CurrentContainer.Name }}
+
+def getPikaParameters():
+    mqUser = False
+    {{ if $CurrentContainer.Env.RABBITMQ_USER }}
+    mqUser = '{{ $CurrentContainer.Env.RABBITMQ_USER }}'
+    {{ end }}
+    mqPassword = False
+    {{ if $CurrentContainer.Env.RABBITMQ_PWD }}
+    mqPassword = '{{ $CurrentContainer.Env.RABBITMQ_PWD }}'
+    {{ end }}
+    credentials = False
+    if(mqUser & mqPassword):
+        credentials = pika.credentials.PlainCredentials(mqUser, mqPassword, erase_on_connect=False)
+    else:
+        print('ATTENTION: RabbitMQ credentials not set.')  
+
+
+    mqPort = 5672
+    mqIp = False
+    {{ range $rabbitPWD, $containers := groupByMulti $ "Env.RABBITMQ_ROOT_PWD" "," }}
+         {{ range $index, $container := $containers }}
+             {{ range $containerNetwork := $container.Networks }}
+    mqIp = '{{ $containerNetwork.IP }}';
+             {{ end }}
+        {{ end }}
+    {{ end }} 
+
+    parameters = False
+    if(credentials & mqIp & mqPort):
+        parameters = pika.ConnectionParameters(mqIp, mqPort, '/', credentials)
+    return parameters
+
+def getPikaQueues():
+    queues = []
+    {{ range $queueNameS := split $CurrentContainer.Env.RABBITMQ_QUEUE "," }} 
+    queues.append('{{ $dbNameS }}') 
+    {{ end }}
+    return queues
