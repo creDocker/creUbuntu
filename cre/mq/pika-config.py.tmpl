@@ -12,7 +12,7 @@ def getPikaParameters():
     mqPassword = '{{ $CurrentContainer.Env.RABBITMQ_PWD }}'
     {{ end }}
     credentials = False
-    if(mqUser & mqPassword):
+    if(mqUser and mqPassword):
         credentials = pika.credentials.PlainCredentials(mqUser, mqPassword, erase_on_connect=False)
     else:
         print('ATTENTION: RabbitMQ credentials not set.')  
@@ -29,7 +29,7 @@ def getPikaParameters():
     {{ end }} 
 
     parameters = False
-    if(credentials & mqIp & mqPort):
+    if(credentials and mqIp and mqPort):
         parameters = pika.ConnectionParameters(mqIp, mqPort, '/', credentials)
     return parameters
 
