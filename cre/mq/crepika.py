@@ -31,7 +31,7 @@ def receiveQueue(queueName, callback):
         print('ATTENTION: receiveQueue failed.')
         return False
 
-def sendQueue(queueName, exChangeName, messageBody, delayTime=-1)
+def sendQueue(queueName, exChangeName, messageBody, delayTime=-1):
     parameters = pikaConfig.getPikaParameters()
     if(parameters):
         connection = pika.BlockingConnection(parameters)
