@@ -21,6 +21,8 @@ def receiveQueue(queueName, callback):
     if(parameters):
         connection = pika.BlockingConnection(parameters)
         channel = connection.channel()
+        
+        channel.queue_declare(queue=queueName)
         channel.basic_consume(queue=queueName,
                       auto_ack=False,
                       on_message_callback=callback)
