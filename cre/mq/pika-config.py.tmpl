@@ -56,7 +56,7 @@ def getQueueLenght(queueName):
         {{ end }}
     {{ end }} 
     if(mqRootPW and mqIp and mqPort):
-        api_queues = 'http://' + mqIp + ':' + mqPort + '/api/queues/%2F/'+queueName
+        api_queues = 'http://' + mqIp + ':' + str(mqPort) + '/api/queues/%2F/'+queueName
         data = requests.get(api_queues, auth=HTTPBasicAuth('admin', mqRootPW))
         json = data.json()
         queueLength = json['messages']
