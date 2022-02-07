@@ -4,7 +4,7 @@
 exchange='cre.default'
 binding=''
 queue='cre.{{ $CurrentContainer.Name }}'
-script=/cre/show-message.sh
+script=/cre/mq/show-message.sh
 
 while getopts e:b:q:s: flag
 do

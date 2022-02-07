@@ -22,7 +22,7 @@ def receiveQueue(queueName, callback):
         connection = pika.BlockingConnection(parameters)
         channel = connection.channel()
         
-        channel.queue_declare(queue=queueName)
+        channel.queue_declare(queue=queueName, durable=True, auto_delete=False)
         channel.basic_consume(queue=queueName,
                       auto_ack=False,
                       on_message_callback=callback)
@@ -42,10 +42,12 @@ def sendQueue(queueName, exChangeName, messageBody, delayTime=-1):
             channel.exchange_declare(exchange=exChangeName,
                          exchange_type='x-delayed-message',
                          arguments={"x-delayed-type":"direct"})
-        queue = channel.queue_declare(queue=queueName)
+        queue = channel.queue_declare(queue=queueName, durable=True, auto_delete=False)
         channel.queue_bind(exchange=exChangeName,
                        queue=queueName,
                        routing_key=queueName)
+        q_len = queue.method.message_count
+        print('Queue Length of '+queueName+' = '+str(q_len)) 
         if(delayTime>0.0):
             delay = int(delayTime/1000.0)
             channel.basic_publish(exchange=exChangeName,
@@ -60,6 +62,19 @@ def sendQueue(queueName, exChangeName, messageBody, delayTime=-1):
                       body=messageBody)
     else:
         print('ATTENTION: sendQueue failed.')
+
+
+def lenghtQueue():
+    parameters = pikaConfig.getPikaParameters()
+    if(parameters):
+        connection = pika.BlockingConnection(parameters)
+        channel = connection.channel()
+        queue = channel.queue_declare(queue=queueName, durable=True, auto_delete=False, passive=True)
+        q_len = queue.method.message_count
+        return(q_len)
+    else:
+        print('ATTENTION: lengthQueue failed.')
+        return False
 
 
 
