@@ -66,13 +66,9 @@ def sendQueue(queueName, exChangeName, messageBody, delayTime=-1):
 
 
 def lenghtQueue(queueName):
-    parameters = pikaConfig.getPikaParameters()
-    if(parameters):
-        connection = pika.BlockingConnection(parameters)
-        channel = connection.channel()
-        queue = channel.queue_declare(queue=queueName, durable=True, auto_delete=False, passive=True)
-        q_len = queue.method.message_count
-        return(q_len)
+    length = pikaConfig.getQueueLenght(queueName)
+    if(length and (length>=0)):
+        return(length)
     else:
         print('ATTENTION: lengthQueue failed.')
         return False

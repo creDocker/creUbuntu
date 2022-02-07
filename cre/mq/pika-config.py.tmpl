@@ -1,4 +1,6 @@
 import pika
+import requests
+from requests.auth import HTTPBasicAuth
 
 #Current Container Name : {{ $CurrentContainer.Name }}
 
@@ -39,3 +41,27 @@ def getPikaQueues():
     queues.append('{{ $queueNameS }}') 
     {{ end }}
     return queues
+
+def getQueueLenght(queueName):
+    mqPort = 5672
+    mqIp = False
+    mqRootPW = ''
+    queueLength = -1
+    {{ range $rabbitPWD, $containers := groupByMulti $ "Env.RABBITMQ_ROOT_PWD" "," }}
+         {{ range $index, $container := $containers }}
+             {{ range $containerNetwork := $container.Networks }}
+    mqIp = '{{ $containerNetwork.IP }}';
+    mqRootPW = '{{ $containerNetwork.RABBITMQ_ROOT_PWD }}'
+             {{ end }}
+        {{ end }}
+    {{ end }} 
+
+    parameters = False
+    if(mqRootPW and mqIp and mqPort):
+        api_queues = 'http://' + mqIp + ':' + mqPort + '/api/queues/%2F/'+queueName
+        data = requests.get(api_queues, auth=HTTPBasicAuth('admin', mqRootPW))
+        json = data.json()
+        queueLength = json['messages']
+    return queueLength    
+
+
