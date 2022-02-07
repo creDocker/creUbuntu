@@ -51,12 +51,10 @@ def getQueueLenght(queueName):
          {{ range $index, $container := $containers }}
              {{ range $containerNetwork := $container.Networks }}
     mqIp = '{{ $containerNetwork.IP }}';
-    mqRootPW = '{{ $containerNetwork.RABBITMQ_ROOT_PWD }}'
+    mqRootPW = '{{ $rabbitPWD }}'
              {{ end }}
         {{ end }}
     {{ end }} 
-
-    parameters = False
     if(mqRootPW and mqIp and mqPort):
         api_queues = 'http://' + mqIp + ':' + mqPort + '/api/queues/%2F/'+queueName
         data = requests.get(api_queues, auth=HTTPBasicAuth('admin', mqRootPW))
