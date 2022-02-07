@@ -1,0 +1,36 @@
+#!/bin/bash
+# Current Container Name : {{ $CurrentContainer.Name }}
+
+queue='cre.{{ $CurrentContainer.Name }}'
+queue_length=-1
+
+while getopts q: flag
+do
+    case "${flag}" in
+        q) queue=${OPTARG};;
+    esac
+done	
+
+if [ -z "$binding" ]
+then
+  binding=$queue
+fi
+																																																																																																		initQueue='{"exchange":"'$exchange'", "binding":"'$binding'", "queue":"'$queue'"}'
+
+rabbitmq_host=''
+{{ if $CurrentContainer.Env.RABBITMQ_QUEUE }}
+ {{ range $rabbitmqServerPWD, $containers := groupByMulti $ "Env.RABBITMQ_ROOT_PWD" "," }}
+  {{ range $index, $container := $containers }}
+   {{ $rootPassword := or $container.Env.RABBITMQ_ROOT_PWD "_secret_" }}
+   {{ $rabbitmqPort := or $container.Env.RABBITMQ_PORT "5672" }}
+    rabbitmq_port='{{ $rabbitmqPort }}'
+   {{ range $containerNetwork := $container.Networks }}
+    rabbitmq_host='{{ $containerNetwork.IP }}'
+    queue_length = $(curl -s -k -u admin:$rootPassword $rabbitmq_host:$rabbitmqPort/api/queues/%2F/$queue | jq '.messages')
+   {{ end }}
+  {{ end }} 
+ {{ end }} 
+{{ end }}
+
+echo $queue_length
+
