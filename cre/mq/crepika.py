@@ -43,6 +43,9 @@ def sendQueue(queueName, exChangeName, messageBody, delayTime=-1):
                          exchange_type='x-delayed-message',
                          arguments={"x-delayed-type":"direct"})
         queue = channel.queue_declare(queue=queueName)
+        channel.queue_bind(exchange=exChangeName,
+                       queue=queueName,
+                       routing_key=queueName)
         if(delayTime>0.0):
             delay = int(delayTime/1000.0)
             channel.basic_publish(exchange=exChangeName,
