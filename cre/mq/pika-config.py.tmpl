@@ -42,7 +42,7 @@ def getPikaQueues():
     {{ end }}
     return queues
 
-def getQueueLenght(queueName):
+def getQueueLength(queueName):
     mqPort = 15672
     mqIp = False
     mqRootPW = ''
@@ -56,12 +56,16 @@ def getQueueLenght(queueName):
         {{ end }}
     {{ end }} 
     if(mqRootPW and mqIp and mqPort):
-        api_queues = 'http://' + mqIp + ':' + str(mqPort) + '/api/queues/%2F/'+queueName
-        data = requests.get(api_queues, auth=HTTPBasicAuth('admin', mqRootPW))
+        url = 'http://' + mqIp + ':' + str(mqPort) + '/api/queues/%2F/'+queueName
+        print(url)
+        data = requests.get(url, auth=HTTPBasicAuth('admin', mqRootPW))
         print(data)
         json = data.json()
         print(json)
-        queueLength = json['messages']
+        if('len' in json):
+            queueLength = json['len']
+        if('messages' in json):
+            queueLength = json['messages']
     return queueLength    
 
 

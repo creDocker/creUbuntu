@@ -18,8 +18,10 @@ fi
 																																																																																																		initQueue='{"exchange":"'$exchange'", "binding":"'$binding'", "queue":"'$queue'"}'
 
 rabbitmq_host=''
+root_password=''
 {{ if $CurrentContainer.Env.RABBITMQ_QUEUE }}
  {{ range $rabbitmqServerPWD, $containers := groupByMulti $ "Env.RABBITMQ_ROOT_PWD" "," }}
+  root_password='{{ $rabbitmqServerPWD }}'
   {{ range $index, $container := $containers }}
    {{ $rootPassword := or $container.Env.RABBITMQ_ROOT_PWD "_secret_" }}
    {{ $rabbitmqPort := or $container.Env.RABBITMQ_PORT "5672" }}
@@ -27,7 +29,7 @@ rabbitmq_host=''
     rabbitmq_port='15672'
    {{ range $containerNetwork := $container.Networks }}
     rabbitmq_host='{{ $containerNetwork.IP }}'
-    queue_length=$(curl -s -k -u admin:$rabbitmqServerPWD $rabbitmq_host:$rabbitmq_port/api/queues/%2F/$queue | jq '.messages')
+    queue_length=$(curl -s -k -u admin:$root_password $rabbitmq_host:$rabbitmq_port/api/queues/%2F/$queue | jq '.messages')
    {{ end }}
   {{ end }} 
  {{ end }} 

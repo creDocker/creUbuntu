@@ -65,8 +65,8 @@ def sendQueue(queueName, exChangeName, messageBody, delayTime=-1):
         print('ATTENTION: sendQueue failed.')
 
 
-def lenghtQueue(queueName):
-    length = pikaConfig.getQueueLenght(queueName)
+def lengthQueue(queueName):
+    length = pikaConfig.getQueueLength(queueName)
     if(length and (length>=0)):
         return(length)
     else:

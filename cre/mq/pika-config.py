@@ -12,6 +12,6 @@ def getPikaQueues():
     print('ATTENTION: RabbitMQ queues not set.')
     return queues
 
-def getQueueLenght(queueName):
+def getQueueLength(queueName):
     print('ATTENTION: RabbitMQ credentials not set.')
     return -1
