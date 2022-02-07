@@ -27,7 +27,7 @@ rabbitmq_host=''
     rabbitmq_port='15672'
    {{ range $containerNetwork := $container.Networks }}
     rabbitmq_host='{{ $containerNetwork.IP }}'
-    queue_length=$(curl -s -k -u admin:$rootPassword $rabbitmq_host:$rabbitmqPort/api/queues/%2F/$queue | jq '.messages')
+    queue_length=$(curl -s -k -u admin:$rabbitmqServerPWD $rabbitmq_host:$rabbitmq_port/api/queues/%2F/$queue | jq '.messages')
    {{ end }}
   {{ end }} 
  {{ end }} 
