@@ -53,7 +53,7 @@ def sendQueue(exChangeName, messageBody, routingKey, queueName, delayTime=-1):
     if(parameters):
         connection = pika.BlockingConnection(parameters)
         channel = connection.channel()
-        createQueue(exChangeName, queueBinding, queueName)
+        createQueue(exChangeName, routingKey, queueName)
         if(delayTime>0.0):
             delay = int(delayTime/1000.0)
             channel.basic_publish(exchange=exChangeName,
