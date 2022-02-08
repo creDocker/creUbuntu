@@ -71,7 +71,7 @@ def lengthQueue(queueName):
         return(length)
     else:
         print('ATTENTION: lengthQueue failed.')
-        return False
+        return -1
 
 
 
