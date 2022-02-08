@@ -48,7 +48,7 @@ RUN \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y apt-transport-https build-essential g++ gcc inotify-tools locales libc-dev make software-properties-common swig expect && \
-  apt-get install -y util-linux rename  jq amqp-tools && \
+  apt-get install -y util-linux rename  jq amqp-tools apcalc && \
   apt-get install -y bash libfreetype6-dev libhdf5-serial-dev libpng-dev libzmq3-dev pkg-config graphviz tar && \
   apt-get install -y bc byobu curl git htop libzip4 zlib1g logrotate man pwgen ssmtp sudo rsync unzip vim wget && \
   apt-get install -y snapd hashcash libssh2-1 openssl openssh-server openssh-client ufw && \
