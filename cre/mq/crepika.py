@@ -33,33 +33,38 @@ def receiveQueue(queueName, callback):
         print('ATTENTION: receiveQueue failed.')
         return False
 
-def sendQueue(exChangeName, messageBody, queueKey, queueName, delayTime=-1):
+def createQueue(exChangeName, routingKey, queueName):
     parameters = pikaConfig.getPikaParameters()
     if(parameters):
         connection = pika.BlockingConnection(parameters)
         channel = connection.channel()
-        if(delayTime>0.0):
-            channel.exchange_declare(exchange=exChangeName,
+        channel.exchange_declare(exchange=exChangeName,
                          exchange_type='x-delayed-message',
                          arguments={"x-delayed-type":"direct"})
         queue = channel.queue_declare(queue=queueName, durable=True, auto_delete=False)
         channel.queue_bind(exchange=exChangeName,
                        queue=queueName,
-                       routing_key=queueName)
-        queue = channel.queue_declare(queue=queueName, durable=True, auto_delete=False, passive=True)
-        q_len = queue.method.message_count
-        print('Queue Length of '+queueName+' = '+str(q_len)) 
+                       routing_key=routingKey)
+    else:
+        print('ATTENTION: createQueue failed.')
+
+def sendQueue(exChangeName, messageBody, routingKey, queueName, delayTime=-1):
+    parameters = pikaConfig.getPikaParameters()
+    if(parameters):
+        connection = pika.BlockingConnection(parameters)
+        channel = connection.channel()
+        createQueue(exChangeName, queueBinding, queueName)
         if(delayTime>0.0):
             delay = int(delayTime/1000.0)
             channel.basic_publish(exchange=exChangeName,
-                      routing_key=queueName,
+                      routing_key=routingKey,
                       properties=pika.BasicProperties(
                           headers={'x-delay': delay} # Add a key/value header
                       ),
                       body=messageBody)
         else:
             channel.basic_publish(exchange=exChangeName,
-                      routing_key=queueName,
+                      routing_key=routingKey,
                       body=messageBody)
     else:
         print('ATTENTION: sendQueue failed.')
