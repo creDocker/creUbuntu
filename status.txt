@@ -18,4 +18,8 @@ github workflows
 https://github.com/docker/build-push-action#inputs
 
 
+#miller : csv,json, etc, ...
+https://miller.readthedocs.io/en/latest/installing-miller/
+apt-get install miller
+
 

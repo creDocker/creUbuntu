@@ -80,6 +80,33 @@ def lengthQueue(queueName):
 
 
 
+# https://python.plainenglish.io/improve-your-code-with-decorators-4fec033b99eb
+# https://realpython.com/primer-on-python-decorators/
+
+def log_with_name(name):
+  def log_result(f):
+    def inner(*args, **kwargs):
+      res = f(*args, **kwargs)
+      print(name + ": " + str(res))
+      return inner
+  return log_result
+
+
+@log_with_name("Sum")
+def sum(a, b):
+  return a+b
+
+
+# @receiveFromQueue(q)
+# @sendToQueue(q)
+# @limitByQueue(q l)
+# @loopByTime(t)
+
+
+
+
+
+
 
 
 
