@@ -21,7 +21,7 @@ def receiveQueue(queueName, callback):
     if(parameters):
         connection = pika.BlockingConnection(parameters)
         channel = connection.channel()
-        
+        # queue: arguments='{"x-dead-letter-exchange": "cre.deathletter", "x-dead-letter-routing-key": "cre.deathletter"}'
         channel.queue_declare(queue=queueName, durable=True, auto_delete=False)
         channel.basic_consume(queue=queueName,
                       auto_ack=False,
@@ -41,7 +41,8 @@ def createQueue(exChangeName, bindingKey, queueName):
         channel.exchange_declare(exchange=exChangeName,
                          exchange_type='x-delayed-message',
                          arguments={"x-delayed-type":"direct"})
-        queue = channel.queue_declare(queue=queueName, durable=True, auto_delete=False)
+        # queue: arguments='{"x-dead-letter-exchange": "cre.deathletter", "x-dead-letter-routing-key": "cre.deathletter"}'
+        queue = channel.queue_declare(queue=queueName, durable=True, auto_delete=False)  
         channel.queue_bind(exchange=exChangeName,
                        queue=queueName,
                        routing_key=bindingKey)
