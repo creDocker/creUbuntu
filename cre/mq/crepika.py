@@ -33,7 +33,7 @@ def receiveQueue(queueName, callback):
         print('ATTENTION: receiveQueue failed.')
         return False
 
-def createQueue(exChangeName, routingKey, queueName):
+def createQueue(exChangeName, bindingKey, queueName):
     parameters = pikaConfig.getPikaParameters()
     if(parameters):
         connection = pika.BlockingConnection(parameters)
@@ -44,7 +44,7 @@ def createQueue(exChangeName, routingKey, queueName):
         queue = channel.queue_declare(queue=queueName, durable=True, auto_delete=False)
         channel.queue_bind(exchange=exChangeName,
                        queue=queueName,
-                       routing_key=routingKey)
+                       routing_key=bindingKey)
     else:
         print('ATTENTION: createQueue failed.')
 
@@ -101,8 +101,6 @@ def sum(a, b):
 # @sendToQueue(q)
 # @limitByQueue(q l)
 # @loopByTime(t)
-
-
 
 
 
