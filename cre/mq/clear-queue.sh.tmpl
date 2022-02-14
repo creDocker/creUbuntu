@@ -1,18 +1,13 @@
 #!/bin/bash
 # Current Container Name : {{ $CurrentContainer.Name }}
 
-exchange='cre.default'
-binding=''
 queue='cre.{{ $CurrentContainer.Name }}'
-script=/cre/mq/show-message.sh
+queue_length=-1
 
-while getopts e:b:q:s: flag
+while getopts q: flag
 do
     case "${flag}" in
-        e) exchange=${OPTARG};;
-        b) binding=${OPTARG};;
         q) queue=${OPTARG};;
-        s) script=${OPTARG};;
     esac
 done	
 
@@ -53,9 +48,19 @@ rabbitmq_host=''
  {{ end }} 
 {{ end }}
 
-#amqp-publish --url=amqp://$rabbit_user:$rabbit_pwd@$rabbitmq_host:$rabbitmq_port -e "cre.swamp" -r "cre.horse" -b "$initQueue"
-#sleep 1
 
-## https://reposcope.com/man/en/1/amqp-consume
-amqp-consume --url=amqp://$rabbit_user:$rabbit_pwd@$rabbitmq_host:$rabbitmq_port -e "$exchange" -q "$queue" -r "$binding" -d $script
+queue_length=$(curl -s -k -u admin:$root_password $rabbitmq_host:$rabbitmq_port/api/queues/%2F/$queue | jq '.messages')
+if [ -z "$queue_length" ] then
+  echo "Clear: queue $queue does not exist."
+else
+  while [ $queue_length -gt 0 ]
+  do
+    ## https://reposcope.com/man/en/1/amqp-get
+    amqp-get --url=amqp://$rabbit_user:$rabbit_pwd@$rabbitmq_host:$rabbitmq_port -q "$queue" 
+    sleep $(calc -d "0.1/$queue_length")
+    #sleep 0.1
+    queue_length=$(curl -s -k -u admin:$root_password $rabbitmq_host:$rabbitmq_port/api/queues/%2F/$queue | jq '.messages')
+  done
+fi
+
 
