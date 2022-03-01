@@ -4,7 +4,7 @@ from requests.auth import HTTPBasicAuth
 
 #Current Container Name : {{ $CurrentContainer.Name }}
 
-def getPikaParameters():
+def getPikaParameters(heartbeat=300):
     mqUser = False
     {{ if $CurrentContainer.Env.RABBITMQ_USER }}
     mqUser = '{{ $CurrentContainer.Env.RABBITMQ_USER }}'
@@ -32,7 +32,7 @@ def getPikaParameters():
 
     parameters = False
     if(credentials and mqIp and mqPort):
-        parameters = pika.ConnectionParameters(mqIp, mqPort, '/', credentials)
+        parameters = pika.ConnectionParameters(mqIp, mqPort, '/', credentials, heartbeat=2*heartbeat, blocked_connection_timeout=heartbeat)
     return parameters
 
 def getPikaQueues():
