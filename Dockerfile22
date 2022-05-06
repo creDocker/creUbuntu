@@ -16,8 +16,8 @@ ARG BUILD_TAG=latest
 # version: yyyy.n for stable versions 
 #          0.yyyy for development - tagged automatically if base functionality is working 
 ENV CRE_VERSION 0.2022 
-#ENV UBUNTU_VERSION 22.04
-ENV UBUNTU_VERSION 'Jammy Jellyfish'    
+ENV UBUNTU_VERSION 22.04
+#ENV UBUNTU_VERSION 'Jammy Jellyfish'    
 ENV OPENSSL_VERSION 3.0.1
 #8 needed for spark nlp ? 15?
 ENV JAVA_VERSION 11
