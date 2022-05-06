@@ -14,6 +14,12 @@ pipreqs --mode gt --force /cre/python/
 # Install
 pip install -r /cre/python/requirements.txt
 
+# Initialize
+if [ -f /cre/python/initialize.sh ]; then
+    chmod 777 /cre/python/initialize.sh
+    /cre/python/initialize.sh
+fi
+
 # Run main.py or app.py or auto.py?
 
 

@@ -13,6 +13,8 @@ def clearQueue(queueName):
     else:
         print('ATTENTION: clearQueue failed.')
 
+## clearQueue vs deleteQueue
+
 def stopReceive(threadId):
     threadId.stop()
 
