@@ -53,5 +53,19 @@ jobs:
       -
         name: Trigger
         run: |
-          curl -XPOST -u "${{ secrets.DOCKERHUB_USERNAME}}:${{secrets.DOCKERHUB_TOKEN}}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/creDocker/creGlue/dispatches --data '{"event_type": "dockerhub:2022.0"}'  
+          curl -XPOST -u "${{ secrets.DOCKERHUB_USERNAME}}:${{secrets.DOCKERHUB_TOKEN}}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/creDocker/creGlue/dispatches --data '{"event_type": "dockerhub:2022.0"}' 
+
+
+      -
+        name: run Api
+        run: |
+          curl -u "${{ secrets.DOCKERHUB_USERNAME}}:${{secrets.DOCKERHUB_TOKEN}}" \
+           -X POST \
+           -H "Accept: application/vnd.github.v3+json" \
+           https://api.github.com/repos/creDocker/creGlue/actions/workflows/docker2022.yml/dispatches \
+           -d '{"ref": "master", 
+              "inputs": {
+                 "name": "trigger from api2",
+                 "home": "test2"}
+               }' 
 
