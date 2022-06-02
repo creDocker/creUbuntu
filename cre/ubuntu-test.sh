@@ -65,7 +65,7 @@ fi
 shoreman /cre/ubuntu-procfile &
 
 sleep 3
-
+echo "[WARNING]: File /cre/python/requirements.txt checked soon"
 # Check init of Python
 if [ ! -f /cre/python/requirements.txt ]; then
     echo "[FAIL]: File /cre/python/requirements.txt not found!"
