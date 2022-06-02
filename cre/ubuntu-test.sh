@@ -64,9 +64,15 @@ fi
 
 shoreman /cre/ubuntu-procfile &
 
-sleep 2
+sleep 3
 
-# No test in the moment
+# Check init of Python
+if [ ! -f /cre/python/requirements.txt ]; then
+    echo "[FAIL]: File /cre/python/requirements.txt not found!"
+    exit 1
+fi
+cat /cre/python/requirements.txt
+
 
 echo "[SUCCESS]"
 exit 0
