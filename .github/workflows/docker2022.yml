@@ -69,28 +69,21 @@ jobs:
                  "home": "test2"}
                }' 
 
-  docker-run-action:
-    runs-on: ubuntu-latest
-    container:
-      image: tamboraorg/creubuntu:2022.0
-#      env: 
-#        NODE_ENV: development
-#      ports:
-#        - 80
-      volumes:
-#        - ${{ github.workspace }}/versions_2022.txt:/cre/versions_2022.txt
-        - ${{ github.workspace }}/cre/versions:/cre/versions        
-    steps:
-      - uses: actions/checkout@v3
-#        with:
-#          ref: master
-      - name: ls cre
-        run: (ls -l /cre)
-      - name: touch cre/versions/versions_2022.txt
-        run: (touch /cre/versions/versions_2022.txt)            
-      - name: ls cre/versions
-        run: (ls -l /cre/versions)        
-      - name: cp version.txt
-        run: (cp /cre/versions.txt /cre/versions/versions_2022.txt)
-      - name: Submit changes       
-        uses: EndBug/add-and-commit@v9
+#  docker-run-action:
+#    runs-on: ubuntu-latest
+#    container:
+#      image: tamboraorg/creubuntu:2022.0
+#      volumes:
+#        - ${{ github.workspace }}/cre/versions:/cre/versions        
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: ls cre
+#        run: (ls -l /cre)
+#      - name: touch cre/versions/versions_2022.txt
+#        run: (touch /cre/versions/versions_2022.txt)            
+#      - name: ls cre/versions
+#        run: (ls -l /cre/versions)        
+#      - name: cp version.txt
+#        run: (cp /cre/versions.txt /cre/versions/versions_2022.txt)
+#      - name: Submit changes       
+#        uses: EndBug/add-and-commit@v9
