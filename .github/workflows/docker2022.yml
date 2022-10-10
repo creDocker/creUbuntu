@@ -78,7 +78,8 @@ jobs:
 #      ports:
 #        - 80
       volumes:
-        - ${{ github.workspace }}/versions_2022.txt:/cre/versions_2022.txt
+#        - ${{ github.workspace }}/versions_2022.txt:/cre/versions_2022.txt
+        - ${{ github.workspace }}/cre/versions:/cre/versions        
     steps:
       - uses: actions/checkout@v3
 #        with:
@@ -86,6 +87,6 @@ jobs:
       - name: ls cre
         run: (ls -l /cre)
       - name: cp version.txt
-        run: (cp -T /cre/versions.txt /cre/versions_2022.txt)
+        run: (cp -T /cre/versions.txt /cre/versions/versions_2022.txt)
       - name: Submit changes       
         uses: EndBug/add-and-commit@v9
