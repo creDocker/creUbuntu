@@ -86,6 +86,8 @@ jobs:
 #          ref: master
       - name: ls cre
         run: (ls -l /cre)
+      - name: touch cre/versions/versions_2022.txt
+        run: (touch /cre/versions/versions_2022.txt)            
       - name: ls cre/versions
         run: (ls -l /cre/versions)        
       - name: cp version.txt
