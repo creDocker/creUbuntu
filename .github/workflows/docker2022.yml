@@ -77,13 +77,13 @@ jobs:
 #        NODE_ENV: development
 #      ports:
 #        - 80
-#      volumes:
-#        - ${{ github.workspace }}/versions_2022.txt:/cre/versions.txt
+      volumes:
+        - ${{ github.workspace }}/versions_2022.txt:/cre/versions_2022.txt
     steps:
       - uses: actions/checkout@v3
 #        with:
 #          ref: master 
       - name: cp version.txt
-        run: (cp /cre/versions.txt ${{ github.workspace }}/versions_2022.txt)
+        run: (cp /cre/versions.txt /cre/versions_2022.txt)
       - name: Submit changes       
         uses: EndBug/add-and-commit@v9
