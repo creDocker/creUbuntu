@@ -69,3 +69,21 @@ jobs:
                  "home": "test2"}
                }' 
 
+  docker-run-action:
+    runs-on: ubuntu-latest
+    container:
+      image: tamboraorg/creubuntu:2022.0
+#      env:
+#        NODE_ENV: development
+#      ports:
+#        - 80
+#      volumes:
+#        - ${{ github.workspace }}/versions_2022.txt:/cre/versions.txt
+    steps:
+      - uses: actions/checkout@v3
+#        with:
+#          ref: master
+      - name: cp version.txt
+        run: (cp /cre/versions.txt ${{ github.workspace }}/versions_2022.txt)
+      - name: Submit changes       
+        uses: EndBug/add-and-commit@v9
