@@ -82,7 +82,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 #        with:
-#          ref: master
+#          ref: master 
       - name: cp version.txt
         run: (cp /cre/versions.txt ${{ github.workspace }}/versions_2022.txt)
       - name: Submit changes       
