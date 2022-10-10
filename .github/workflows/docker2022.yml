@@ -86,6 +86,8 @@ jobs:
 #          ref: master
       - name: ls cre
         run: (ls -l /cre)
+      - name: ls cre/versions
+        run: (ls -l /cre/versions)        
       - name: cp version.txt
         run: (cp -T /cre/versions.txt /cre/versions/versions_2022.txt)
       - name: Submit changes       
