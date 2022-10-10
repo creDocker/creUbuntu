@@ -78,9 +78,7 @@ jobs:
 #      ports:
 #        - 80
       volumes:
-        - type: bind
-          source: ${{ github.workspace }}/versions_2022.txt
-          target: /cre/versions_2022.txt
+        - ${{ github.workspace }}/versions_2022.txt:/cre/versions_2022.txt
     steps:
       - uses: actions/checkout@v3
 #        with:
