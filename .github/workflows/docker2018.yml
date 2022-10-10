@@ -6,6 +6,11 @@ on:
   push:
     branches:
       - 'master'
+  workflow_dispatch:
+  schedule:
+    # * is a special character in YAML so you have to quote this string 1:00  weekly,Thursday,1:00 #m h d/m m d/w 
+    - cron:  '00 1 * * 4'
+
 
 jobs:
   docker:
