@@ -5,7 +5,7 @@ name: dockerhub:2016.0
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
   workflow_dispatch:
   schedule:
     # * is a special character in YAML so you have to quote this string 1:00  weekly,Wednesday,1:00 #m h d/m m d/w 
