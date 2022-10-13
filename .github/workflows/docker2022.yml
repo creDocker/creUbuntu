@@ -86,8 +86,10 @@ jobs:
       - name: ls cre/versions
         run: (ls -l /cre/versions)    
       - name: ls cre/versions (ws)
-        run: (ls -l ${{ github.workspace }}/cre/versions)       
+        run: (ls -l ${{ github.workspace }}/cre/versions)     
       - name: cp version.txt
-        run: (cp /cre/versions.txt /cre/versions/versions_2022.txt)
+        run: (cp /cre/versions.txt ${{ github.workspace }}/cre/versions_2022.txt)
+#      - name: cp version.txt
+#        run: (cp /cre/versions.txt /cre/versions/versions_2022.txt)
       - name: Submit changes       
         uses: EndBug/add-and-commit@v9
