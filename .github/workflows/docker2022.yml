@@ -84,9 +84,11 @@ jobs:
 #      - name: touch cre/versions/versions_2022.txt
 #        run: (touch /cre/versions/versions_2022.txt)            
       - name: ls cre/versions
-        run: (ls -l /cre/versions)    
+        run: (ls -l /cre/versions)  
       - name: ls cre/versions (ws)
-        run: (ls -l ${{ github.workspace }}/cre/versions)     
+        run: (ls -l ${{ github.workspace }}/cre/)     
+      - name: ls cre/versions (ws)
+        run: (ls -l ${{ github.workspace }}/cre/versions/)     
       - name: cp version.txt
         run: (cp /cre/versions.txt ${{ github.workspace }}/cre/versions/versions_2022.txt)
 #      - name: cp version.txt
