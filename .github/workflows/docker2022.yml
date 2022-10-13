@@ -73,8 +73,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: tamboraorg/creubuntu:2022.0
-      volumes:
-        - ${{ github.workspace }}/cre/versions:/cre/versions        
+#      volumes:
+#        - ${{ github.workspace }}/cre/versions:/cre/versions        
     steps:
       - uses: actions/checkout@v3
       - name: ls cre
@@ -88,7 +88,7 @@ jobs:
       - name: ls cre/versions (ws)
         run: (ls -l ${{ github.workspace }}/cre/versions)     
       - name: cp version.txt
-        run: (cp /cre/versions.txt ${{ github.workspace }}/cre/versions_2022.txt)
+        run: (cp /cre/versions.txt ${{ github.workspace }}/cre/versions/versions_2022.txt)
 #      - name: cp version.txt
 #        run: (cp /cre/versions.txt /cre/versions/versions_2022.txt)
       - name: Submit changes       
