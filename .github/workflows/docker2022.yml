@@ -69,55 +69,17 @@ jobs:
                  "home": "test2"}
                }' 
 
-  docker-run-action:
+  versions:
     runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        shell: bash
-#        working-directory: ${{ github.workspace }}
     container:
       image: tamboraorg/creubuntu:2022.0
-##      volumes:
-#        - ${{ github.workspace }}/cre/versions:/cre/versions   
-##       - ${{ github.workspace }}/cre:/cre/versions
-      options:
-         --name newcontainer   
-
     steps:
       - uses: actions/checkout@v3
-
       - name: Set ownership
         run: |
           # this is to fix GIT not liking owner of the checkout dir
           chown -R $(id -u):$(id -g) $PWD
-
-      - name: ls cre
-        run: (ls -l /cre)
-      - name: cat versions.txt
-        run: (cat /cre/versions.txt)
-      - name: pwd
-        run: (pwd)    
-      - name: ls pre 
-        run: (ls -l cre/versions)   
       - name: cp version.txt
         run: (cp /cre/versions.txt cre/versions/versions_2022.txt) 
-##      - name: cat versions.txt to 2022
-#        run: (cat /cre/versions.txt) > ${{ github.workspace }}/cre/versions/versions_2022.txt
-##        run:  docker cp newcontainer:/cre/versions.txt .  
-#      - name: touch cre/versions/versions_2022.txt
-#        run: (touch /cre/versions/versions_2022.txt) 
-
-      - name: ls post
-        run: (ls -l cre/versions)             
-#      - name: ls cre/versions
-#        run: (ls -l /cre/versions)  
-#      - name: ls cre/versions (ws)
-#        run: (ls -l ${{ github.workspace }}/cre/)     
-##      - name: ls cre/versions (ws)
-##        run: (ls -l ${{ github.workspace }}/cre/versions/)     
-##      - name: cp version.txt
-##        run: (cp /cre/versions.txt ${{ github.workspace }}/cre/versions/versions_2022.txt)
-#      - name: cp version.txt
-#        run: (cp /cre/versions.txt /cre/versions/versions_2022.txt)
       - name: Submit changes       
         uses: EndBug/add-and-commit@v9

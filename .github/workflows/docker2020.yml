@@ -49,5 +49,20 @@ jobs:
           file: ./Dockerfile20
           push: true
           tags: tamboraorg/creubuntu:2020.0, tamboraorg/creubuntu:latest 
+
+  versions:
+    runs-on: ubuntu-latest
+    container:
+      image: tamboraorg/creubuntu:2020.0
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set ownership
+        run: |
+          # this is to fix GIT not liking owner of the checkout dir
+          chown -R $(id -u):$(id -g) $PWD
+      - name: cp version.txt
+        run: (cp /cre/versions.txt cre/versions/versions_2020.txt) 
+      - name: Submit changes       
+        uses: EndBug/add-and-commit@v9
       
 
