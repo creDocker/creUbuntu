@@ -75,7 +75,7 @@ jobs:
       image: tamboraorg/creubuntu:2022.0
       volumes:
 #        - ${{ github.workspace }}/cre/versions:/cre/versions   
-        - ${{ github.workspace }}:/cre/versions   
+        - ${{ github.workspace }}/cre:/cre/versions   
     steps:
       - uses: actions/checkout@v3
       - name: ls cre
