@@ -71,7 +71,7 @@ jobs:
 
   docker-run-action:
     runs-on: ubuntu-latest
-    defaults:
+#    defaults:
 #      run:
 #        shell: bash
 #        working-directory: ${{ github.workspace }}
