@@ -58,10 +58,10 @@ jobs:
       - name: wait
         run: sleep 260
       - uses: actions/checkout@v3
-      - name: Set ownership
-        run: |
-          # this is to fix GIT not liking owner of the checkout dir
-          chown -R $(id -u):$(id -g) $PWD
+##      - name: Set ownership
+##        run: |
+##          # this is to fix GIT not liking owner of the checkout dir
+##          chown -R $(id -u):$(id -g) $PWD
       - name: cp version.txt
 #        run: (cp /cre/versions.txt cre/versions/versions_2020.txt) 
         run: (cut -f2,3 /cre/versions.txt > cre/versions/versions_2020.txt)

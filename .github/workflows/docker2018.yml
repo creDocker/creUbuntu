@@ -65,6 +65,8 @@ jobs:
       - name: cp version.txt
 #        run: (cp /cre/versions.txt cre/versions/versions_2018.txt) 
         run: (cut -f2,3 /cre/versions.txt > cre/versions/versions_2018.txt)
+      - name: pwd
+        run: (pwd)
       - name: Submit changes       
         uses: EndBug/add-and-commit@v9
         with:
