@@ -56,7 +56,7 @@ jobs:
       image: tamboraorg/creubuntu:2020.0
     steps:
       - name: wait
-        run: sleep 260
+        run: sleep 480
       - uses: actions/checkout@v3
       - name: Set ownership
         run: |
