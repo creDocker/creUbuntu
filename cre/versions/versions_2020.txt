@@ -1,4 +1,4 @@
-2022-10-14 11:13 	 creUbuntu 	 20.04.5 LTS
-2022-10-14 11:13 	  OpenSSL 1.1.1f  31 Mar 2020
-2022-10-14 11:13 	  Java 	 openjdk version "1.8.0_342"
-2022-10-14 11:13 	  Python3 	 Python 3.8.10
+ creUbuntu 	 20.04.5 LTS
+  OpenSSL 1.1.1f  31 Mar 2020
+  Java 	 openjdk version "1.8.0_342"
+  Python3 	 Python 3.8.10
