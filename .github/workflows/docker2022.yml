@@ -72,9 +72,9 @@ jobs:
   docker-run-action:
     runs-on: ubuntu-latest
     defaults:
-      run:
-        shell: bash
-        working-directory: cre/versions
+#      run:
+#        shell: bash
+#        working-directory: ${{ github.workspace }}
     container:
       image: tamboraorg/creubuntu:2022.0
 ##      volumes:
@@ -85,6 +85,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Set ownership
+        run: |
+          # this is to fix GIT not liking owner of the checkout dir
+          chown -R $(id -u):$(id -g) $PWD
+
       - name: ls cre
         run: (ls -l /cre)
       - name: cat versions.txt
@@ -92,20 +98,17 @@ jobs:
       - name: pwd
         run: (pwd)    
       - name: ls pre 
-        run: (ls -l)   
+        run: (ls -l cre/vesions)   
       - name: cp version.txt
-        run: (cp /cre/versions.txt ./versions_2022.txt) 
+        run: (cp /cre/versions.txt .cre/vesions/versions_2022.txt) 
 ##      - name: cat versions.txt to 2022
 #        run: (cat /cre/versions.txt) > ${{ github.workspace }}/cre/versions/versions_2022.txt
 ##        run:  docker cp newcontainer:/cre/versions.txt .  
 #      - name: touch cre/versions/versions_2022.txt
 #        run: (touch /cre/versions/versions_2022.txt) 
-      - name: Set ownership
-        run: |
-          # this is to fix GIT not liking owner of the checkout dir
-          chown -R $(id -u):$(id -g) $PWD
+
       - name: ls post
-        run: (ls -l)             
+        run: (ls -l cre/vesions)             
 #      - name: ls cre/versions
 #        run: (ls -l /cre/versions)  
 #      - name: ls cre/versions (ws)
