@@ -85,6 +85,6 @@ jobs:
         run: (cp /cre/versions.txt cre/versions/versions_2022.txt) 
       - name: Submit changes       
         uses: EndBug/add-and-commit@v9
-          with:
-            pull: '--rebase --autostash ...'
-            add: 'cre/versions/versions_2022.txt'
+        with:
+          pull: '--rebase --autostash ...'
+          add: 'cre/versions/versions_2022.txt'
