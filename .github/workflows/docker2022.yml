@@ -71,11 +71,18 @@ jobs:
 
   docker-run-action:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: cre/versions
     container:
       image: tamboraorg/creubuntu:2022.0
 ##      volumes:
 #        - ${{ github.workspace }}/cre/versions:/cre/versions   
-##       - ${{ github.workspace }}/cre:/cre/versions   
+##       - ${{ github.workspace }}/cre:/cre/versions
+      options:
+         --name newcontainer   
+
     steps:
       - uses: actions/checkout@v3
       - name: ls cre
@@ -83,9 +90,12 @@ jobs:
       - name: cat versions.txt
         run: (cat /cre/versions.txt)
       - name: cat versions.txt to 2022
-        run: (cat /cre/versions.txt) > ${{ github.workspace }}/cre/versions/versions_2022.txt
+#        run: (cat /cre/versions.txt) > ${{ github.workspace }}/cre/versions/versions_2022.txt
+        run:  docker cp newcontainer:/cre/versions.txt .  
 #      - name: touch cre/versions/versions_2022.txt
-#        run: (touch /cre/versions/versions_2022.txt)            
+#        run: (touch /cre/versions/versions_2022.txt) 
+      - name: ls 
+        run: (ls -l)             
       - name: ls cre/versions
         run: (ls -l /cre/versions)  
 #      - name: ls cre/versions (ws)
