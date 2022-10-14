@@ -98,7 +98,7 @@ jobs:
       - name: pwd
         run: (pwd)    
       - name: ls pre 
-        run: (ls -l cre/vesions)   
+        run: (ls -l cre/versions)   
       - name: cp version.txt
         run: (cp /cre/versions.txt .cre/vesions/versions_2022.txt) 
 ##      - name: cat versions.txt to 2022
@@ -108,7 +108,7 @@ jobs:
 #        run: (touch /cre/versions/versions_2022.txt) 
 
       - name: ls post
-        run: (ls -l cre/vesions)             
+        run: (ls -l cre/versions)             
 #      - name: ls cre/versions
 #        run: (ls -l /cre/versions)  
 #      - name: ls cre/versions (ws)
