@@ -55,7 +55,7 @@ jobs:
       image: tamboraorg/creubuntu:2016.0
     steps:
       - name: wait
-        run: sleep 960
+        run: sleep 300
       - uses: actions/checkout@v3
       - name: Set ownership
         run: |
