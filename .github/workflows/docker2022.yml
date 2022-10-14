@@ -89,12 +89,16 @@ jobs:
         run: (ls -l /cre)
       - name: cat versions.txt
         run: (cat /cre/versions.txt)
-      - name: cat versions.txt to 2022
+      - name: pwd
+        run: (pwd)    
+      - name: ls pre 
+        run: (ls -l)    
+##      - name: cat versions.txt to 2022
 #        run: (cat /cre/versions.txt) > ${{ github.workspace }}/cre/versions/versions_2022.txt
-        run:  docker cp newcontainer:/cre/versions.txt .  
+##        run:  docker cp newcontainer:/cre/versions.txt .  
 #      - name: touch cre/versions/versions_2022.txt
 #        run: (touch /cre/versions/versions_2022.txt) 
-      - name: ls 
+      - name: ls post
         run: (ls -l)             
       - name: ls cre/versions
         run: (ls -l /cre/versions)  
