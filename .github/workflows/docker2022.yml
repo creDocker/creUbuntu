@@ -73,7 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: tamboraorg/creubuntu:2022.0
-#      volumes:
+      volumes:
 #        - ${{ github.workspace }}/cre/versions:/cre/versions   
         - ${{ github.workspace }}:/cre/versions   
     steps:
