@@ -100,7 +100,7 @@ jobs:
       - name: ls pre 
         run: (ls -l cre/versions)   
       - name: cp version.txt
-        run: (cp /cre/versions.txt .cre/versions/versions_2022.txt) 
+        run: (cp /cre/versions.txt cre/versions/versions_2022.txt) 
 ##      - name: cat versions.txt to 2022
 #        run: (cat /cre/versions.txt) > ${{ github.workspace }}/cre/versions/versions_2022.txt
 ##        run:  docker cp newcontainer:/cre/versions.txt .  
