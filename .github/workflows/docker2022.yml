@@ -88,3 +88,4 @@ jobs:
         with:
 #          pull: '--rebase --autostash ...'
           add: 'cre/versions/versions_2022.txt'
+          tag_push: '--force'
