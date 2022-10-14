@@ -74,6 +74,8 @@ jobs:
     container:
       image: tamboraorg/creubuntu:2022.0
     steps:
+      - name: wait
+        run: sleep 240
       - uses: actions/checkout@v3
       - name: Set ownership
         run: |
