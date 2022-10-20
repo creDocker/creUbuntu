@@ -84,7 +84,7 @@ RUN pip3 install --upgrade pika
 
 
 RUN mkdir -p /cre && touch /cre/versions.txt && \
-    echo "$(date +'%F %R') \t creBuild \t $(date +'%Y.%m')" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \tcreBuild \t $(date +'%Y.%m')" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t creUbuntu \t $(cat /usr/lib/os-release | grep PRETTY | sed -e "s/^PRETTY_NAME=\"Ubuntu //" -e "s/\"$//")" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t  $(openssl version)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t  Java \t $(java -version 2>&1 | grep version)" >> /cre/versions.txt && \  
