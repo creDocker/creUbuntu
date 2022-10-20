@@ -69,6 +69,8 @@ jobs:
         run: (pwd)
       - name: ls -l -a
         run: (ls -l -a)
+      - name: git status
+        run: (git status)
       - name: Submit changes       
         uses: EndBug/add-and-commit@v9
         with:
