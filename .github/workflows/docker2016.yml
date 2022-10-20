@@ -61,11 +61,11 @@ jobs:
         run: |
           # this is to fix GIT not liking owner of the checkout dir
           chown -R $(id -u):$(id -g) $PWD
+      - name: cat version.txt
+        run: (cat /cre/versions.txt) 
       - name: cp version.txt
 #        run: (cp /cre/versions.txt cre/versions/versions_2016.txt) 
         run: (cut -f2,3 /cre/versions.txt > cre/versions/versions_2016.txt)
-      - name: pwd
-        run: (pwd)
       - name: Submit changes       
         uses: EndBug/add-and-commit@v9
         with:

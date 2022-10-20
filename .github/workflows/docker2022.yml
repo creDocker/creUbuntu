@@ -81,6 +81,8 @@ jobs:
         run: |
           # this is to fix GIT not liking owner of the checkout dir
           chown -R $(id -u):$(id -g) $PWD
+      - name: cat version.txt
+        run: (cat /cre/versions.txt) 
       - name: cp version.txt
 #        run: (cp /cre/versions.txt cre/versions/versions_2022.txt) 
         run: (cut -f2,3 /cre/versions.txt > cre/versions/versions_2022.txt)
