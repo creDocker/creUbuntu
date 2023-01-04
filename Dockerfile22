@@ -57,6 +57,7 @@ RUN \
   apt-get install -y util-linux rename  jq amqp-tools apcalc && \
   apt-get install -y bc byobu curl git htop zlib1g logrotate man pwgen ssmtp sudo rsync unzip vim wget && \
   apt-get install -y hashcash libssh2-1 openssl openssh-server openssh-client ufw && \
+  apt-get install -y libhdf5-serial-dev && \
   rm -rf /var/lib/apt/lists/*
 
 # libzip4  ->  php-zip ???
