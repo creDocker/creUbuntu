@@ -49,26 +49,4 @@ jobs:
           push: true
           tags: tamboraorg/creubuntu:2016.0 
 
-  versions:
-    runs-on: ubuntu-latest
-    container:
-      image: tamboraorg/creubuntu:2016.0
-    steps:
-      - name: wait
-        run: sleep 330
-      - uses: actions/checkout@v3
-      - name: Set ownership
-        run: |
-          # this is to fix GIT not liking owner of the checkout dir
-          chown -R $(id -u):$(id -g) $PWD
-      - name: cat version.txt
-        run: (cat /cre/versions.txt) 
-      - name: cp version.txt
-#        run: (cp /cre/versions.txt cre/versions/versions_2016.txt) 
-        run: (cut -f2,3 /cre/versions.txt > cre/versions/versions_2016.txt)
-      - name: Submit changes       
-        uses: EndBug/add-and-commit@v9
-        with:
-#          pull: '--rebase --autostash ...'
-          add: 'cre/versions/versions_2016.txt'
-          tag_push: '--force'
+
