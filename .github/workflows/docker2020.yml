@@ -48,7 +48,7 @@ jobs:
         with:
           file: ./Dockerfile20
           push: true
-          tags: credocker/creubuntu:2020.0, tamboraorg/creubuntu:latest 
+          tags: credocker/creubuntu:2020.0, credocker/creubuntu:latest 
 
  
 
