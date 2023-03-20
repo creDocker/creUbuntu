@@ -35,12 +35,12 @@ jobs:
         with:
           file: ./Dockerfile18
           push: true
-          tags: tamboraorg/creubuntu:check18
+          tags: credocker/creubuntu:check18
 
       -
         name: Test
         run: |
-          docker run tamboraorg/creubuntu:check18 /cre/ubuntu-test.sh  
+          docker run credocker/creubuntu:check18 /cre/ubuntu-test.sh  
       -
         name: Build and push
         id: docker_push
@@ -48,6 +48,6 @@ jobs:
         with:
           file: ./Dockerfile18
           push: true
-          tags: tamboraorg/creubuntu:2018.0 
+          tags: credocker/creubuntu:2018.0 
 
 

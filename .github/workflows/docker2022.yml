@@ -35,12 +35,12 @@ jobs:
         with:
           file: ./Dockerfile22
           push: true
-          tags: tamboraorg/creubuntu:check22
+          tags: credocker/creubuntu:check22
 
       -
         name: Test
         run: |
-          docker run tamboraorg/creubuntu:check22 /cre/ubuntu-test.sh  
+          docker run credocker/creubuntu:check22 /cre/ubuntu-test.sh  
       -
         name: Build and push
         id: docker_push
@@ -48,7 +48,7 @@ jobs:
         with:
           file: ./Dockerfile22
           push: true
-          tags: tamboraorg/creubuntu:2022.0 
+          tags: credocker/creubuntu:2022.0 
 
       -
         name: Trigger

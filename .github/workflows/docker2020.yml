@@ -34,12 +34,12 @@ jobs:
         with:
           file: ./Dockerfile20
           push: true
-          tags: tamboraorg/creubuntu:check20 
+          tags: credocker/creubuntu:check20 
 
       -
         name: Test
         run: |
-          docker run tamboraorg/creubuntu:check20 /cre/ubuntu-test.sh   
+          docker run credocker/creubuntu:check20 /cre/ubuntu-test.sh   
 
       -
         name: Build and push
@@ -48,7 +48,7 @@ jobs:
         with:
           file: ./Dockerfile20
           push: true
-          tags: tamboraorg/creubuntu:2020.0, tamboraorg/creubuntu:latest 
+          tags: credocker/creubuntu:2020.0, tamboraorg/creubuntu:latest 
 
  
 
