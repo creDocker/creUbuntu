@@ -56,6 +56,8 @@ unset mailhub
 unset authuser
 unset authpass
 
+echo 'set sendmail="/usr/bin/msmtp -t"' > /etc/mail.rc
+
 # https://blog.doenselmann.com/emails-automatisch-mit-ssmtp-versenden/
 # https://binfalse.de/2020/02/17/migrating-from-ssmtp-to-msmtp/
 # https://wiki.debian.org/msmtp
