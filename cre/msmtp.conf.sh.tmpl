@@ -1,0 +1,66 @@
+#!/bin/bash 
+
+# Current Container Name : {{ $CurrentContainer.Name }}
+# Glue Container Name : {{ $GlueContainer.Name }}
+
+domain2='localhost'
+{{ $domain := "localhost" }}
+{{ range $creDomain, $containers := groupByMulti $ "Env.CRE_DOMAIN" "," }}
+  {{ $domain := $creDomain }}
+  domain2='{{$creDomain}}'
+{{ end }} 
+
+{{ $mailhubfile := or $CurrentContainer.Env.SECRET_MAIL_HUB "no_secret_file_given.txt"}}
+mailhub=$(/cre/get-secret.sh {{ $mailhubfile }} "mail.$domain2")
+{{ $authuserfile := or $CurrentContainer.Env.SECRET_MAIL_USER "no_secret_file_given.txt"}}
+authuser=$(/cre/get-secret.sh {{ $authuserfile }} '')
+{{ $authpassfile := or $CurrentContainer.Env.SECRET_MAIL_PWD "no_secret_file_given.txt"}}
+authpass=$(/cre/get-secret.sh {{ $authpassfile }} '')
+
+
+#root=postmaster
+echo 'defaults' > /etc/msmtprc;
+echo 'port 25' >> /etc/msmtprc;
+echo 'tls on' >> /etc/msmtprc;
+echo 'account default' >> /etc/msmtprc;
+
+
+
+##Bei creMail:
+##echo "host mail.$domain2:587" >> /etc/msmtprc
+##echo "domain $domain2" >> /etc/msmtprc
+##echo 'from webserver@'$domain2 >> /etc/msmtprc
+
+## Use external mailhub
+echo 'host '$mailhub >> /etc/msmtprc 
+echo 'domain '$domain2 >> /etc/msmtprc
+echo 'from webserver@'$domain2 >> /etc/msmtprc
+## echo "from $authuser@$domain2" >> /etc/msmtprc
+{{ if (and (ne $authuserfile "") (ne $authpassfile "")) }}
+if [ ! -z $authuser ]; then
+ if [ ! -z $authpass ]; then
+  # https://marlam.de/msmtp/msmtp.html#Authentication
+  echo 'auth on' >> /etc/msmtprc;
+  echo 'user '$authuser >> /etc/msmtprc 
+  echo 'password '$authpass >> /etc/msmtprc 
+  #AuthMethod=LOGIN
+ fi
+fi
+{{ else }}
+  echo 'auth off' >> /etc/msmtprc;
+{{ end }}
+echo 'add_missing_date_header on' >> /etc/msmtprc
+
+#dont't let secrets show up in environment variables
+unset mailhub
+unset authuser
+unset authpass
+
+# https://blog.doenselmann.com/emails-automatisch-mit-ssmtp-versenden/
+# https://binfalse.de/2020/02/17/migrating-from-ssmtp-to-msmtp/
+# https://wiki.debian.org/msmtp
+# https://marlam.de/msmtp/
+# root:alerts@yourdomain.com:smtp.yourdomain.com:587
+# username:alerts@yourdomain.com:smtp.yourdomain.com:587
+
+

@@ -23,3 +23,19 @@ https://miller.readthedocs.io/en/latest/installing-miller/
 apt-get install miller
 
 
+ssmtp:
+* ssmtp -> msmtp
+https://binfalse.de/2020/02/17/migrating-from-ssmtp-to-msmtp/
+https://wiki.debian.org/msmtp
+https://marlam.de/msmtp/
+* gmail changed 
+https://aruljohn.com/blog/php-send-email/?utm_content=cmp-true
+https://mailtrap.io/blog/phpmailer-gmail/
+* ATTENTION uni-freiburg mail passwort changed?
+
+#test
+ssmtp "testing ssmtp setup" yourMail@gmail.com
+mail -s "teste" address@email.com
+echo "" | mail -s "teste" address@email.com
+
+
