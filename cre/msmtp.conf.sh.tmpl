@@ -24,8 +24,6 @@ echo 'port 25' >> /etc/msmtprc;
 echo 'tls on' >> /etc/msmtprc;
 echo 'account default' >> /etc/msmtprc;
 
-
-
 ##Bei creMail:
 ##echo "host mail.$domain2:587" >> /etc/msmtprc
 ##echo "domain $domain2" >> /etc/msmtprc
@@ -34,12 +32,13 @@ echo 'account default' >> /etc/msmtprc;
 ## Use external mailhub
 echo 'host '$mailhub >> /etc/msmtprc 
 echo 'domain '$domain2 >> /etc/msmtprc
-echo 'from webserver@'$domain2 >> /etc/msmtprc
-## echo "from $authuser@$domain2" >> /etc/msmtprc
+## echo 'from webserver@'$domain2 >> /etc/msmtprc
+echo "from $authuser" >> /etc/msmtprc
 {{ if (and (ne $authuserfile "") (ne $authpassfile "")) }}
 if [ ! -z $authuser ]; then
  if [ ! -z $authpass ]; then
   # https://marlam.de/msmtp/msmtp.html#Authentication
+  echo "from $authuser" >> /etc/msmtprc
   echo 'auth on' >> /etc/msmtprc;
   echo 'user '$authuser >> /etc/msmtprc 
   echo 'password '$authpass >> /etc/msmtprc 
@@ -47,6 +46,7 @@ if [ ! -z $authuser ]; then
  fi
 fi
 {{ else }}
+  echo 'from admin@'$domain2 >> /etc/msmtprc
   echo 'auth off' >> /etc/msmtprc;
 {{ end }}
 echo 'add_missing_date_header on' >> /etc/msmtprc

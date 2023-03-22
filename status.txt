@@ -35,6 +35,7 @@ https://mailtrap.io/blog/phpmailer-gmail/
 
 #test
 ssmtp "testing ssmtp setup" yourMail@gmail.com
+msmtp "testing msmtp setup" yourMail@gmail.com
 mail -s "teste" address@email.com
 echo "" | mail -s "teste" address@email.com
 
