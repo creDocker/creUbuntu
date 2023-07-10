@@ -101,9 +101,10 @@ RUN mkdir -p /cre && touch /cre/versions.txt && \
     echo "$(date +'%F %R') \t  $(openssl version)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t  $(msmtp --version | grep version)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t  Java \t $(java -version 2>&1 | grep version)" >> /cre/versions.txt && \  
-    echo "$(date +'%F %R') \t  Python3 \t $(python3 --version)" >> /cre/versions.txt 
-
-##  python3 -m flask --version 
+    echo "$(date +'%F %R') \t  Python3 \t $(python3 --version)" >> /cre/versions.txt && \ 
+    echo "$(date +'%F %R') \t   Flask \t $(python3 -m flask --version)" >> /cre/versions.txt && \ 
+    echo "$(date +'%F %R') \t   Pika \t $(python3 -m pika --version)" >> /cre/versions.txt
+  
 
 COPY cre/ /cre/
 # Copy shoremen to handle Procfile (Process Managment)
