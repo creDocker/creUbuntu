@@ -80,7 +80,7 @@ RUN pip3 install --upgrade pip
 ## RUN pip3 install --upgrade pika # not working
 #python3-dev removed here
 # modify yml files: 
-RUN pip3 install pyyaml
+## RUN pip3 install pyyaml # not working
 
 
 RUN mkdir -p /cre && touch /cre/versions.txt && \
