@@ -89,6 +89,8 @@ RUN pip3 install pipreqs
 #rabbitMQ
 RUN pip3 install --upgrade pika
 #python3-dev removed here
+# modify yml files: 
+RUN pip3 install pyyaml
 
 ## Flask-2.3.2-py3-none-any.whl
 # blinker>=1.6.2   vs   blinker 1.4

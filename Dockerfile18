@@ -88,6 +88,8 @@ RUN pip3 install pipreqs
 #rabbitMQ
 RUN pip3 install --upgrade pika
 #python3-dev removed here
+# modify yml files: 
+RUN pip3 install pyyaml
 
 RUN mkdir -p /cre && touch /cre/versions.txt && \
     echo "$(date +'%F %R') \tcreBuild \t $(date +'%Y.%m')" >> /cre/versions.txt && \
