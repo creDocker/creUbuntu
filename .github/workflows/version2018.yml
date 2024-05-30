@@ -17,7 +17,7 @@ jobs:
     container:
       image: credocker/creubuntu:2018.0
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set ownership
         run: |
           # this is to fix GIT not liking owner of the checkout dir
