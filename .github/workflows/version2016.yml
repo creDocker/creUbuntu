@@ -17,7 +17,9 @@ jobs:
     container:
       image: credocker/creubuntu:2016.0
     steps:
-      - name: node version
+      - name: Install Node 
+        run: (curl -sL "https://deb.nodesource.com/setup_20.x" | bash - && apt-get install -y nodejs)
+      - name: Node Version
         run: (node -v) 
       - uses: actions/checkout@v4
       - name: Set ownership
