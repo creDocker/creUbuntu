@@ -17,6 +17,8 @@ jobs:
     container:
       image: credocker/creubuntu:2016.0
     steps:
+      - name: node version
+        run: (node -v) 
       - uses: actions/checkout@v4
       - name: Set ownership
         run: |
