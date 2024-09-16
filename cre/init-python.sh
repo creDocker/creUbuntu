@@ -2,6 +2,10 @@
 
 # Creates requirements.txt
 
+
+
+echo "Repository name: $GITHUB_REPOSITORY"
+
 if [ ! -f /cre/python/requirements.txt ]; then
     pip freeze > /cre/python/requirements.txt
     chmod 777 /cre/python/requirements.txt
