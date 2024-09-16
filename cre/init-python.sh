@@ -7,7 +7,10 @@ if [ ! -f /cre/python/requirements.txt ]; then
     chmod 777 /cre/python/requirements.txt
     # https://github.com/bndr/pipreqs
     pipreqs --mode gt --force /cre/python/
+    echo "requirements.txt written"
 fi
+
+cat /cre/python/requirements.txt
 
 # Install
 pip install -r /cre/python/requirements.txt
