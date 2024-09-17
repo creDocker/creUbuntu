@@ -87,6 +87,8 @@ RUN pip3 install --upgrade pika
 # modify yml files: 
 RUN pip3 install pyyaml
 
+# Freeze python requirements here:
+RUN pip3 freeze --no-cache-dir > /cre/requirements.txt.orig
 
 RUN mkdir -p /cre && touch /cre/versions.txt && \
     echo "$(date +'%F %R') \tcreBuild \t $(date +'%Y.%m')" >> /cre/versions.txt && \
