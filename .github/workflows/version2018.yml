@@ -33,13 +33,13 @@ jobs:
       - name: cat requirements.txt
         run: (cat /cre/requirements.txt.orig) 
       - name: cp requirements.txt
-        if: ${{ env.CRE_VERSION == env.CURRENT_YEAR }}
+        if: ${{ env.CRE_VERSION != env.CURRENT_YEAR }}
         run: (cp /cre/requirements.txt.orig cre/versions/requirements_2018.txt)
 #
       - name: Submit changes       
         uses: EndBug/add-and-commit@v9
         with:
 #         pull: '--rebase --autostash ...'
-          add: 'cre/versions/versions_2018.txt'
+          add: 'cre/versions/versions_2018.txt cre/versions/requirements_2018.txt'
           tag_push: '--force'
 
