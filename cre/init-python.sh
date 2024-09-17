@@ -17,7 +17,7 @@ fi
 cat /cre/python/requirements.txt
 
 # Install
-pip3 install --no-cache-dir --root-user-action -r /cre/python/requirements.txt
+pip3 install --no-cache-dir --root-user-action ignore -r /cre/python/requirements.txt
 
 # Initialize
 if [ -f /cre/python/initialize.sh ]; then
