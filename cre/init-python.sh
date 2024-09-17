@@ -6,7 +6,11 @@
 
 echo "Repository name: $GITHUB_REPOSITORY"
 
+# 
 if [ ! -f /cre/python/requirements.txt ]; then
+    #CURRENT_YEAR=$(date +'%Y')
+    VERSION_YEAR=$CRE_VERSION:0:4
+    cp cre/versions/requirements_$VERSION_YEAR.txt /cre/python/requirements.txt
     pip3 freeze --no-cache-dir > /cre/python/requirements.txt
     chmod 777 /cre/python/requirements.txt
     # https://github.com/bndr/pipreqs
