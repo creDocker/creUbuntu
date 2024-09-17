@@ -29,11 +29,13 @@ jobs:
         run: (cut -f2,3 /cre/versions.txt > cre/versions/versions_2022.txt)
 #
       - name: set current year
-        run: (echo "CURRENT_YEAR=$(date +'%Y.0')" >> $GITHUB_ENV) 
+        run: (echo -n "CURRENT_YEAR=$(date +'%Y.0')" >> $GITHUB_ENV) 
+      - name: set current version
+        run: (echo -n "CURRENT_VERSION=$CRE_VERSION" >> $GITHUB_ENV) 
       - name: cat requirements.txt
         run: (cat /cre/requirements.txt.orig) 
       - name: cp requirements.txt
-        if: ${{ ((env.CRE_VERSION)) == ((env.CURRENT_YEAR)) }}
+        if: env.CURRENT_VERSION == env.CURRENT_YEAR
         run: (cp /cre/requirements.txt.orig cre/versions/requirements_2022.txt)
 #
       - name: Submit changes       

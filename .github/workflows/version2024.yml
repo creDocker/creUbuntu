@@ -34,8 +34,6 @@ jobs:
         run: (echo -n "CURRENT_VERSION=$CRE_VERSION" >> $GITHUB_ENV) 
       - name: cat requirements.txt
         run: (cat /cre/requirements.txt.orig) 
-      - name: show env
-        run: (env) 
       - name: cp requirements.txt
         if: env.CURRENT_VERSION == env.CURRENT_YEAR
         run: (cp /cre/requirements.txt.orig cre/versions/requirements_2024.txt)
