@@ -35,7 +35,7 @@ jobs:
       - name: show env
         run: (env) 
       - name: cp requirements.txt
-        if: ((env.CRE_VERSION)) == ((env.CURRENT_YEAR))
+        if: ${{ ((env.CRE_VERSION)) == ((env.CURRENT_YEAR)) }}
         run: (cp /cre/requirements.txt.orig cre/versions/requirements_2024.txt)
 #
       - name: Submit changes       
