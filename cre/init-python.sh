@@ -7,7 +7,7 @@
 echo "Repository name: $GITHUB_REPOSITORY"
 
 if [ ! -f /cre/python/requirements.txt ]; then
-    pip3 freeze > /cre/python/requirements.txt
+    pip3 freeze --no-cache-dir > /cre/python/requirements.txt
     chmod 777 /cre/python/requirements.txt
     # https://github.com/bndr/pipreqs
     pipreqs --mode gt --force /cre/python/
@@ -17,7 +17,7 @@ fi
 cat /cre/python/requirements.txt
 
 # Install
-pip3 install -r /cre/python/requirements.txt
+pip3 install --no-cache-dir -r /cre/python/requirements.txt
 
 # Initialize
 if [ -f /cre/python/initialize.sh ]; then
