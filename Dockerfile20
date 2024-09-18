@@ -58,7 +58,10 @@ RUN \
 
 #RUN apt-get install -y --reinstall pkg-config cmake-data
 #RUN apt-get -y install pkgconf
-RUN apt-get install -y pkg-config
+RUN apt-get update && \
+    apt-get -y upgrade && \
+    apt-cache search pkg-config && \
+    apt-get install -y pkg-config
 #apt-get update -y && apt-get install meson cmake fuse3 libfuse3-dev libglib2.0-dev pkg-config python3-dev -y
 
 # https://wiki.ubuntuusers.de/jq/
