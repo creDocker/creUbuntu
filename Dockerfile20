@@ -94,6 +94,8 @@ RUN pip3 install --upgrade pika
 #python3-dev removed here
 # modify yml files: 
 RUN pip3 install pyyaml
+# Handle csv meta data csv for web
+RUN pip3 install csvw
 
 # Freeze python requirements here:
 RUN mkdir -p /cre && \ 
