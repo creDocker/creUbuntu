@@ -99,6 +99,11 @@ RUN pip3 install --upgrade pika
 # modify yml files: 
 RUN pip3 install pyyaml
 
+# Handle csv meta data csv for web
+# https://pypi.org/project/csvw/
+# https://csvw.org/standards.html
+RUN pip3 install csvw
+
 ## Flask-2.3.2-py3-none-any.whl
 # blinker>=1.6.2   vs   blinker 1.4
 

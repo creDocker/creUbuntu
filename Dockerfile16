@@ -82,6 +82,11 @@ RUN pip3 install --upgrade pip
 # modify yml files: 
 ## RUN pip3 install pyyaml # not working
 
+# Handle csv meta data csv for web
+# https://pypi.org/project/csvw/
+# https://csvw.org/standards.html
+RUN pip3 install csvw
+
 # Freeze python requirements here:
 RUN mkdir -p /cre && \ 
     pip3 freeze --no-cache-dir > /cre/requirements.txt.orig
