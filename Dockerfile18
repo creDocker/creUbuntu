@@ -54,6 +54,7 @@ RUN \
   apt-get install -y bash libfreetype6-dev libhdf5-serial-dev libpng-dev libzmq3-dev pkg-config graphviz tar && \
   apt-get install -y bc byobu curl git htop libzip4 zlib1g logrotate man pwgen ssmtp sudo rsync unzip vim wget xvfb zip && \
   apt-get install -y snapd hashcash libssh2-1 openssl openssh-server openssh-client ufw && \
+  # libpcre2-dev libbz2-dev zlib1g-dev liblzma-dev libicu-dev
   rm -rf /var/lib/apt/lists/*
 
 # Update git version (needed for github workflow)

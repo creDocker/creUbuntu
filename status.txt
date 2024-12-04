@@ -41,5 +41,23 @@ mail -s "teste" address@email.com
 echo "" | mail -s "teste" address@email.com
 
 
+penv!
+#https://python.land/virtual-environments/virtualenv#Python_venv_activation
+Einrichten:
+ python3 -m venv  /cre/python/venv/2024.0
+Aktivieren:
+ source /cre/python/venv/2024.0/bin/activate
+Install:
+ /cre/python/venv/2024.0/bin/pip3 install package
+
+#https://python.land/virtual-environments/pipenv
+#https://python.land/virtual-environments/python-poetry
+
+
+ 
+
+
+
+
 
 version-strategy and version file should be similiar to node/npm requirements (assets: npm-init)
