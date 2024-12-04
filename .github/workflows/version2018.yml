@@ -35,8 +35,7 @@ jobs:
       - name: cat requirements.txt
         run: (cat /cre/requirements.txt.orig) 
       - name: cp requirements.txt
-#        if: env.CURRENT_VERSION == env.CURRENT_YEAR
-        if: env.CURRENT_YEAR == env.CURRENT_YEAR
+        if: env.CURRENT_VERSION == env.CURRENT_YEAR
         run: (cp /cre/requirements.txt.orig cre/versions/requirements_2018.txt)
 #
       - name: Submit changes       
