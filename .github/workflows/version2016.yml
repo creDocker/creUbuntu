@@ -22,6 +22,11 @@ jobs:
 #    ##container:
 #    ##  image: credocker/creubuntu:2024.0
     steps:
+      - uses: actions/checkout@v4
+      - name: Set ownership
+        run: |
+          # this is to fix GIT not liking owner of the checkout dir
+          chown -R $(id -u):$(id -g) $PWD
       - name: run docker in docker
         run: (docker container run --volume ./cre/versions:/cre/versions credocker/creubuntu:2016.0 /cre/update-versions.sh 2016) 
 #
