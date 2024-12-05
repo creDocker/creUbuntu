@@ -18,7 +18,7 @@ env:
 
 jobs:
   versions:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     container:
       image: credocker/creubuntu:2016.0
 
