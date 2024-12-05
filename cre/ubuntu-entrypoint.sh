@@ -2,5 +2,6 @@
 set -e
 
 echo "Ubuntu entry"
+echo "$@"
 
 exec "$@"
