@@ -27,8 +27,8 @@ jobs:
     steps:
       #- name: Install Node 
       #  run: (curl -sL "https://deb.nodesource.com/setup_20.x" | bash - && apt-get install -y nodejs)
-      - name: Node Version
-        run: (node -v) 
+      #- name: Node Version
+      #  run: (node -v) 
       - uses: actions/checkout@v3
       - name: Set ownership
         run: |
