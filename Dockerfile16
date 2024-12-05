@@ -85,7 +85,7 @@ RUN pip3 install --upgrade pip
 # Handle csv meta data csv for web
 # https://pypi.org/project/csvw/
 # https://csvw.org/standards.html
-RUN pip3 install csvw
+# RUN pip3 install csvw  ## NOT working in 16.04 ##
 
 # Freeze python requirements here:
 RUN mkdir -p /cre && \ 
