@@ -17,6 +17,8 @@ fi
 echo "$(pwd)"
 
 echo "$VERSION_YEAR $CURRENT_YEAR $COPY_FILES"
+cat /cre/versions.txt
+cat /cre/requirements.txt.orig
 
 echo "cut -f2,3 /cre/versions.txt > cre/versions/versions_$VERSION_YEAR.txt"
 

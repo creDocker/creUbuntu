@@ -23,7 +23,7 @@ jobs:
 #    ##  image: credocker/creubuntu:2024.0
     steps:
       - name: run docker in docker
-        run: (docker container run credocker/creubuntu:2016.0 --volume ./cre/versions:/cre/versions /cre/update-versions.sh 2016) 
+        run: (docker container run --volume ./cre/versions:/cre/versions credocker/creubuntu:2016.0 /cre/update-versions.sh 2016) 
 #
       - name: Submit changes       
         uses: EndBug/add-and-commit@v9
