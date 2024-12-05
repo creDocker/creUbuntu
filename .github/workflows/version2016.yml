@@ -18,43 +18,12 @@ env:
 
 jobs:
   versions:
-    runs-on: ubuntu-18.04
-    container:
-      image: credocker/creubuntu:2016.0
-
-
-
+    runs-on: ubuntu-latest
+#    ##container:
+#    ##  image: credocker/creubuntu:2024.0
     steps:
-      #- name: Install Node 
-      #  run: (curl -sL "https://deb.nodesource.com/setup_20.x" | bash - && apt-get install -y nodejs)
-      #- name: Node Version
-      #  run: (node -v) 
-      - name: ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION
-        run: (export ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true) 
-      - name: ACTIONS_RUNNER_FORCED_INTERNAL_NODE_VERSION
-        run: (export ACTIONS_RUNNER_FORCED_INTERNAL_NODE_VERSION=node16) 
-      - name: ACTIONS_RUNNER_FORCE_ACTIONS_NODE_VERSION
-        run: (export ACTIONS_RUNNER_FORCE_ACTIONS_NODE_VERSION=node16) 
-      - uses: actions/checkout@v3
-      - name: Set ownership
-        run: |
-          # this is to fix GIT not liking owner of the checkout dir
-          chown -R $(id -u):$(id -g) $PWD
-      - name: cat version.txt
-        run: (cat /cre/versions.txt) 
-      - name: cp version.txt
-#        run: (cp /cre/versions.txt cre/versions/versions_2016.txt) 
-        run: (cut -f2,3 /cre/versions.txt > cre/versions/versions_2016.txt)
-#
-      - name: set current year
-        run: (echo -n "CURRENT_YEAR=$(date +'%Y.0')" >> $GITHUB_ENV) 
-      - name: set current version
-        run: (echo -n "CURRENT_VERSION=$CRE_VERSION" >> $GITHUB_ENV) 
-      - name: cat requirements.txt
-        run: (cat /cre/requirements.txt.orig) 
-      - name: cp requirements.txt
-        if: env.CURRENT_VERSION == env.CURRENT_YEAR
-        run: (cp /cre/requirements.txt.orig cre/versions/requirements_2016.txt)
+      - name: run docker in docker
+        run: (docker container run credocker/creubuntu:2016.0 --volume ./cre/versions:/cre/versions /cre/update-versions.sh 2016) 
 #
       - name: Submit changes       
         uses: EndBug/add-and-commit@v9
