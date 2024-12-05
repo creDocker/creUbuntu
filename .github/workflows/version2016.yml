@@ -21,7 +21,7 @@ jobs:
       #  run: (curl -sL "https://deb.nodesource.com/setup_20.x" | bash - && apt-get install -y nodejs)
       #- name: Node Version
       #  run: (node -v) 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - name: Set ownership
         run: |
           # this is to fix GIT not liking owner of the checkout dir
