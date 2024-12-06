@@ -11,16 +11,9 @@ on:
     # * is a special character in YAML so you have to quote this string 1:00  weekly,Wednesday,1:00 #m h d/m m d/w 
     - cron:  '33 1 * * 3'
 
-env:
-  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-  ACTIONS_RUNNER_FORCED_INTERNAL_NODE_VERSION: node16
-  ACTIONS_RUNNER_FORCE_ACTIONS_NODE_VERSION: node16
-
 jobs:
   versions:
     runs-on: ubuntu-latest
-#    ##container:
-#    ##  image: credocker/creubuntu:2024.0
     steps:
       - uses: actions/checkout@v4
       - name: Set ownership
@@ -29,7 +22,6 @@ jobs:
           chown -R $(id -u):$(id -g) $PWD
       - name: run docker in docker
         run: (docker container run --volume ./cre/versions:/cre/versions credocker/creubuntu:2016.0 /cre/update-versions.sh 2016) 
-#
       - name: Submit changes       
         uses: EndBug/add-and-commit@v9
         with:
