@@ -10,10 +10,17 @@ if [ ! -z "$1" ]; then
   COPY_FILES=true
 fi
 
+#Overwrite always during first year!
 if [ "$VERSION_YEAR" = "$CURRENT_YEAR" ]; then
   COPY_FILES=true
 fi
 
+#Copy if not exists at all
+if [ ! -f /cre/versions/requirements_$VERSION_YEAR.txt ]; then
+  COPY_FILES=true
+fi
+
+#Always use latest version
 cut -f2,3 /cre/versions.txt > /cre/versions/versions_$VERSION_YEAR.txt
 
 if [ $COPY_FILES ]; then
