@@ -20,6 +20,8 @@ if [ ! -f /cre/versions/requirements_$VERSION_YEAR.txt ]; then
   COPY_FILES=true
 fi
 
+#mkdir -p /cre/versions/
+
 #Always use latest version
 cut -f2,3 /cre/versions.txt > /cre/versions/versions_$VERSION_YEAR.txt
 
