@@ -91,6 +91,7 @@ RUN apt-get update && apt-get -y --no-install-recommends install python3 python3
 
 RUN pip3 install wget
 RUN pip3 install Flask==2.2
+RUN pip3 install numpy pandas
 # https://github.com/bndr/pipreqs
 RUN pip3 install pipreqs
 #rabbitMQ
@@ -119,6 +120,9 @@ RUN mkdir -p /cre && touch /cre/versions.txt && \
     echo "$(date +'%F %R') \t  $(msmtp --version | grep version)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t  Java \t $(java -version 2>&1 | grep version)" >> /cre/versions.txt && \  
     echo "$(date +'%F %R') \t  Python3 \t $(python3 --version)" >> /cre/versions.txt && \ 
+    echo "$(date +'%F %R') \t   numpy \t $(python3 -c 'import numpy; print(numpy.__version__)')" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t   scipy \t $(python3 -c 'import scipy; print(scipy.__version__)')" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t   pandas \t $(python3 -c 'import pandas; print(pandas.__version__)')" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   Flask \t $(python3 -m flask --version | grep Flask)" >> /cre/versions.txt
   
 
