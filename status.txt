@@ -55,9 +55,16 @@ Install:
 
 
  
+https://proplot.readthedocs.io/en/stable/colorbars_legends.html
+https://proplot.readthedocs.io/en/stable/why.html
 
 
-
+https://github.com/systemd/particleos   (LINUX OS build)
+https://systemd.io/
+https://en.wikipedia.org/wiki/Systemd
 
 
 version-strategy and version file should be similiar to node/npm requirements (assets: npm-init)
+
+
+https://fastapi.tiangolo.com  vs Flask
