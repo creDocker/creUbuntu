@@ -54,6 +54,7 @@ RUN \
   apt-get install -y bc byobu curl git htop zlib1g logrotate man pwgen ssmtp sudo rsync unzip vim wget xvfb zip && \
   apt-get install -y gnupg hashcash libssh2-1 openssl openssh-server openssh-client ufw && \
   apt-get install -y libhdf5-serial-dev libpcre2-dev libbz2-dev zlib1g-dev liblzma-dev libicu-dev libgbm1 && \
+  apt-get install -y fonts-liberation && \
   rm -rf /var/lib/apt/lists/*
 
 #RUN apt-get install -y --reinstall pkg-config cmake-data
