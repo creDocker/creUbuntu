@@ -69,8 +69,9 @@ RUN \
 # https://wiki.ubuntuusers.de/jq/
 # https://wlanboy.com/tutorial/rabbitmq-bash/
 
-RUN locale-gen en_US en_US.UTF-8 && \ 
-    update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+## NOT WORKING IN >= 2025.10 ??
+## RUN locale-gen en_US en_US.UTF-8 && \ 
+##    update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
