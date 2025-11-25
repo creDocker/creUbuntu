@@ -15,27 +15,27 @@ ARG BUILD_TAG=latest
 
 # version: yyyy.n for stable versions 
 #          0.yyyy for development - tagged automatically if base functionality is working 
-ENV CRE_VERSION 2026.0 
-ENV UBUNTU_VERSION 26.04
-#ENV UBUNTU_VERSION 'noble'    
-ENV OPENSSL_VERSION 3.0.13
+ENV CRE_VERSION=2026.0 
+ENV UBUNTU_VERSION=26.04
+#ENV UBUNTU_VERSION='noble'    
+ENV OPENSSL_VERSION=3.0.13
 #8 needed for spark nlp ? 15?
 # WAS 21 == COMMON -> https://documentation.ubuntu.com/ubuntu-for-developers/reference/availability/java/
-ENV JAVA_VERSION 24
+ENV JAVA_VERSION=24
 # open
-ENV JAVA_FAMILY tem
-#ENV NODE_VERSION 12.16.1 use  creNode...
+ENV JAVA_FAMILY=tem
+#ENV NODE_VERSION=12.16.1 use  creNode...
 # 3.13 ?
-ENV PYTHON_VERSION 3.14
+ENV PYTHON_VERSION=3.14
 
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US.UTF-8
-ENV LC_CTYPE en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
+ENV LC_CTYPE=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
 ENV TZ=UTC
-ENV TERM xterm
-ENV DEBIAN_FRONTEND noninteractive
-ENV INITRD No
+ENV TERM=xterm
+ENV DEBIAN_FRONTEND=noninteractive
+ENV INITRD=No
 
 LABEL Name="Ubuntu for CRE" \
       CRE=$CRE_VERSION \ 
@@ -49,9 +49,9 @@ LABEL Name="Ubuntu for CRE" \
 #RUN runc 1.0.0-rc93
 RUN apt clean
 
-# Install.
-RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
-    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+# Install.  FAILS IN 26
+## RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+##    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
