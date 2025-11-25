@@ -1,0 +1,153 @@
+# 
+# Ubuntu Dockerfile
+#
+# https://github.com/tamboraorg/docker/creUbuntu
+# (adapted from https://github.com/dockerfile/ubuntu )
+
+# Pull base image.
+# 21.04 & 21.10 not working due signing of packages
+FROM ubuntu:26.04  
+MAINTAINER Michael Kahle <michael.kahle@yahoo.de>
+
+ARG BUILD_YEAR=2026
+ARG BUILD_MONTH=0
+ARG BUILD_TAG=latest
+
+# version: yyyy.n for stable versions 
+#          0.yyyy for development - tagged automatically if base functionality is working 
+ENV CRE_VERSION 2026.0 
+ENV UBUNTU_VERSION 26.04
+#ENV UBUNTU_VERSION 'noble'    
+ENV OPENSSL_VERSION 3.0.13
+#8 needed for spark nlp ? 15?
+# WAS 21 == COMMON -> https://documentation.ubuntu.com/ubuntu-for-developers/reference/availability/java/
+ENV JAVA_VERSION 24
+# open
+ENV JAVA_FAMILY tem
+#ENV NODE_VERSION 12.16.1 use  creNode...
+# 3.13 ?
+ENV PYTHON_VERSION 3.14
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+ENV LC_CTYPE en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+ENV TZ=UTC
+ENV TERM xterm
+ENV DEBIAN_FRONTEND noninteractive
+ENV INITRD No
+
+LABEL Name="Ubuntu for CRE" \
+      CRE=$CRE_VERSION \ 
+      Year=$BUILD_YEAR \
+      Month=$BUILD_MONTH \
+      Version=$UBUNTU_VERSION \
+      OS="Ubuntu:$UBUNTU_VERSION" \
+      Build_=$BUILD_TAG 
+
+#Workaround???
+#RUN runc 1.0.0-rc93
+RUN apt clean
+
+# Install.
+RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+
+RUN \
+  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
+  apt-get update && \
+  apt-get -y upgrade && \
+  apt-get install -y apt-transport-https build-essential g++ gcc inotify-tools locales libc-dev make software-properties-common swig expect && \
+  apt-get install -y util-linux rename  jq amqp-tools calc bash xdg-utils && \
+  apt-get install -y bc byobu curl git htop zlib1g logrotate man msmtp msmtp-mta mailutils pwgen sudo rsync unzip vim wget xvfb zip && \
+  apt-get install -y hashcash libssh2-1 openssl openssh-server openssh-client ufw && \
+  apt-get install -y libhdf5-serial-dev libpcre2-dev libbz2-dev zlib1g-dev liblzma-dev libicu-dev libtirpc-dev libgbm1 && \
+  apt-get install -y fonts-liberation && \
+  rm -rf /var/lib/apt/lists/*
+
+# libzip4  ->  php-zip ???
+# https://wiki.ubuntuusers.de/jq/
+# https://wlanboy.com/tutorial/rabbitmq-bash/
+
+RUN locale-gen en_US en_US.UTF-8 && \ 
+    update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+#Add Java JDK
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y openjdk-$JAVA_VERSION-jre && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+ENV JAVA_HOME /usr/lib/jvm/java-$JAVA_VERSION-openjdk-amd64/
+RUN export JAVA_HOME
+
+#Add Python
+ENV PIP_BREAK_SYSTEM_PACKAGES 1
+# python3-full ??
+RUN apt-get update && apt-get -y --no-install-recommends install python3 python3-setuptools python3-pip && apt-get clean 
+RUN apt-get  -y --no-install-recommends install python3-numpy python3-matplotlib 
+# NOT working in 24.0
+#RUN pip3 install --upgrade pip 
+# ERROR: Cannot uninstall pip 24.0, RECORD file not found. Hint: The package was installed by debian.
+# Use pip from inside a venv. That's why you're encountering that error. 
+
+RUN pip3 install wget
+## RUN pip3 install Flask==2.2
+RUN pip3 install Flask
+RUN pip3 install numpy pandas matplotlib
+# https://github.com/bndr/pipreqs
+RUN pip3 install pipreqs
+#rabbitMQ
+RUN pip3 install --upgrade pika
+#python3-dev removed here
+# modify yml files: 
+RUN pip3 install pyyaml
+
+# Handle csv meta data csv for web
+# https://pypi.org/project/csvw/
+# https://csvw.org/standards.html
+RUN pip3 install csvw
+
+## Flask-2.3.2-py3-none-any.whl
+# blinker>=1.6.2   vs   blinker 1.4
+
+# Freeze python requirements here:
+RUN mkdir -p /cre && \ 
+    pip3 freeze --no-cache-dir > /cre/requirements.txt.orig
+
+RUN mkdir -p /cre && touch /cre/versions.txt && \
+    echo "$(date +'%F %R') \tcreBuild \t $(date +'%Y.%m')" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t creUbuntu \t $(cat /usr/lib/os-release | grep PRETTY | sed -e "s/^PRETTY_NAME=\"Ubuntu //" -e "s/\"$//")" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t  UbuntuName \t $(lsb_release -cs)" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t  $(openssl version)" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t  $(msmtp --version | grep version)" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t  Java \t $(java -version 2>&1 | grep version)" >> /cre/versions.txt && \  
+    echo "$(date +'%F %R') \t  Python3 \t $(python3 --version)" >> /cre/versions.txt && \ 
+    echo "$(date +'%F %R') \t   numpy \t $(python3 -c 'import numpy; print(numpy.__version__)')" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t   scipy \t $(python3 -c 'import scipy; print(scipy.__version__)')" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t   pandas \t $(python3 -c 'import pandas; print(pandas.__version__)')" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t   Flask \t $(python3 -m flask --version | grep Flask)" >> /cre/versions.txt
+  
+
+COPY cre/ /cre/
+# Copy shoremen to handle Procfile (Process Managment)
+COPY /cre/shoreman.sh /usr/local/bin/shoreman
+RUN chmod 755 /usr/local/bin/shoreman
+
+#apt-get autoremove
+#apt-get clean
+RUN dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n
+
+# Define mountable directories.
+VOLUME ["/cre/python"]
+
+# Set environment variables.
+ENV HOME /cre
+
+# Define working directory.
+WORKDIR /cre
+
+ENTRYPOINT ["/cre/ubuntu-entrypoint.sh"]
+CMD ["shoreman", "/cre/ubuntu-procfile"]
+
