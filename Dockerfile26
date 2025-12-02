@@ -6,7 +6,7 @@
 
 # Pull base image.
 # 21.04 & 21.10 not working due signing of packages
-FROM ubuntu:25.10  
+FROM ubuntu:26.04  
 MAINTAINER Michael Kahle <michael.kahle@yahoo.de>
 
 ARG BUILD_YEAR=2026
@@ -59,6 +59,7 @@ RUN \
   apt-get -y upgrade && \
   apt-get install -y apt-transport-https build-essential g++ gcc inotify-tools locales libc-dev make software-properties-common swig expect && \
   apt-get install -y util-linux rename  jq amqp-tools calc bash xdg-utils && \
+  apt-get install -y aiohttp asyncio validators && \
   apt-get install -y bc byobu curl git htop zlib1g logrotate man msmtp msmtp-mta mailutils pwgen sudo rsync unzip vim wget xvfb zip && \
   apt-get install -y hashcash libssh2-1 openssl openssh-server openssh-client ufw && \
   apt-get install -y libhdf5-serial-dev libpcre2-dev libbz2-dev zlib1g-dev liblzma-dev libicu-dev libtirpc-dev libgbm1 && \
