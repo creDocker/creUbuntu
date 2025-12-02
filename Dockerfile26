@@ -16,9 +16,11 @@ ARG BUILD_TAG=latest
 # version: yyyy.n for stable versions 
 #          0.yyyy for development - tagged automatically if base functionality is working 
 ENV CRE_VERSION=2026.0 
-ENV UBUNTU_VERSION=26.04
-#ENV UBUNTU_VERSION='noble'    
-ENV OPENSSL_VERSION=3.0.13
+
+## ENV UBUNTU_VERSION=26.04
+ENV UBUNTU_VERSION='Resolute Raccoon'    
+
+ENV OPENSSL_VERSION=3.5.3
 #8 needed for spark nlp ? 15?
 # WAS 21 == COMMON -> https://documentation.ubuntu.com/ubuntu-for-developers/reference/availability/java/
 ENV JAVA_VERSION=24
