@@ -78,11 +78,11 @@ RUN \
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 
-RUN apt-cache madison openjdk-17-jre
-RUN apt-cache madison openjdk-21-jre
-RUN apt-cache madison openjdk-22-jre
-RUN apt-cache madison openjdk-23-jre
-RUN apt-cache madison openjdk-24-jre
+RUN apt-get update && apt-cache madison openjdk-17-jre
+RUN apt-get update && apt-cache madison openjdk-21-jre
+RUN apt-get update && apt-cache madison openjdk-22-jre
+RUN apt-get update && apt-cache madison openjdk-23-jre
+RUN apt-get update && apt-cache madison openjdk-24-jre
 
 
 ## NOT WORKING IN >= 2025.10 ??  version??
