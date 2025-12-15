@@ -2,6 +2,10 @@
 
 # Creates requirements.txt
 
+if [ ! -f /cre/versions/requirements_$VERSION_YEAR.txt ]; then
+  cp /cre/requirements.txt.orig /cre/python/requirements.txt
+fi
+
 if [ ! -f /cre/python/requirements.txt ]; then
     #CURRENT_YEAR=$(date +'%Y')
     VERSION_YEAR=${CRE_VERSION:0:4}
