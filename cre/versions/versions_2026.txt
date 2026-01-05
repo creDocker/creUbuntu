@@ -1,0 +1,11 @@
+creBuild 	 2026.01
+ creUbuntu 	 Resolute Raccoon (development branch)
+  UbuntuName 	 resolute
+  OpenSSL 3.5.3 16 Sep 2025 (Library: OpenSSL 3.5.3 16 Sep 2025)
+  msmtp version 1.8.32
+  Java 	 openjdk version "21.0.10-ea" 2026-01-20
+  Python3 	 Python 3.13.11
+   numpy 	 2.3.5
+   scipy 	 
+   pandas 	 2.3.3
+   Flask 	 Flask 3.1.2
