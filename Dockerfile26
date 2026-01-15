@@ -61,12 +61,14 @@ RUN \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y apt-transport-https build-essential g++ gcc inotify-tools locales libc-dev make software-properties-common swig expect && \
-  apt-get install -y util-linux rename  jq amqp-tools calc bash xdg-utils rich && \
+  apt-get install -y util-linux rename  jq amqp-tools calc bash xdg-utils && \
   apt-get install -y bc byobu curl git htop zlib1g logrotate man msmtp msmtp-mta mailutils pwgen sudo rsync unzip vim wget xvfb zip && \
   apt-get install -y hashcash libssh2-1 openssl openssh-server openssh-client ufw && \
   apt-get install -y libhdf5-serial-dev libpcre2-dev libbz2-dev zlib1g-dev liblzma-dev libicu-dev libtirpc-dev libgbm1 && \
   apt-get install -y fonts-liberation python-gi-cairo webp libwebp-dev && \
   rm -rf /var/lib/apt/lists/*
+
+## apt-get install -y rich # NOT WORKING
 
 # libzip4  ->  php-zip ???
 # https://wiki.ubuntuusers.de/jq/
