@@ -60,7 +60,7 @@ RUN \
   apt-get install -y bc byobu curl git htop zlib1g logrotate man msmtp msmtp-mta mailutils pwgen sudo rsync unzip vim wget xvfb zip && \
   apt-get install -y hashcash libssh2-1 openssl openssh-server openssh-client ufw && \
   apt-get install -y libhdf5-serial-dev libpcre2-dev libbz2-dev zlib1g-dev liblzma-dev libicu-dev libtirpc-dev libgbm1 && \
-  apt-get install -y fonts-liberation webp libwebp-dev && \
+  apt-get install -y fonts-liberation webp libwebp-dev  libcairo2-dev libxt-dev && \
   rm -rf /var/lib/apt/lists/*
 
 ## apt-get install -y rich # NOT WORKING
