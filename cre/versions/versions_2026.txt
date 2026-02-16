@@ -4,7 +4,7 @@ creBuild 	 2026.02
   OpenSSL 3.5.3 16 Sep 2025 (Library: OpenSSL 3.5.3 16 Sep 2025)
   msmtp version 1.8.32
   Java 	 openjdk version "21.0.10" 2026-01-20
-  Python3 	 Python 3.13.11
+  Python3 	 Python 3.13.12
    numpy 	 2.3.5
    scipy 	 
    pandas 	 3.0.0
