@@ -5,7 +5,7 @@ creBuild 	 2026.03
   msmtp version 1.8.32
   Java 	 openjdk version "21.0.11-ea" 2026-04-21
   Python3 	 Python 3.14.3
-   uv 	 
+   uv 	 uv 0.10.12 (x86_64-unknown-linux-gnu)
    numpy 	 2.3.5
    scipy 	 
    pandas 	 3.0.1
