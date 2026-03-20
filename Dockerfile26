@@ -117,8 +117,8 @@ RUN wget -qO- https://astral.sh/uv/install.sh | sh
 
 #RUN /root/.local/bin/uv venv /cre/python ?
 RUN /root/.local/bin/uv venv 
-#RUN /root/.local/bin/uv python pin $PYTHON_VERSION
-RUN /root/.local/bin/uv python pin
+RUN /root/.local/bin/uv python pin $PYTHON_VERSION
+##RUN /root/.local/bin/uv python pin
 
 RUN /root/.local/bin/uv pip install wget
 ## RUN /root/.local/bin/uv pip install Flask==2.2
