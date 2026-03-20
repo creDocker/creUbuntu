@@ -39,7 +39,7 @@ jobs:
         run: (cp /cre/requirements.txt.orig cre/versions/requirements_2026.txt)
 #
       - name: Submit changes       
-        uses: EndBug/add-and-commit@v10
+        uses: EndBug/add-and-commit@v9
         with:
 #          pull: '--rebase --autostash ...'
           add: 'cre/versions/versions_2026.txt cre/versions/requirements_2026.txt'
