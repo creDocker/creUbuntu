@@ -117,36 +117,34 @@ RUN uv --version
 # ERROR: Cannot uninstall pip 24.0, RECORD file not found. Hint: The package was installed by debian.
 # Use pip from inside a venv. That's why you're encountering that error. 
 
-#RUN /root/.local/bin/uv venv /cre/python ?
-RUN /root/.local/bin/uv venv 
-RUN /root/.local/bin/uv python pin $PYTHON_VERSION
-##RUN /root/.local/bin/uv python pin
+RUN uv venv 
+RUN uv python pin $PYTHON_VERSION
 
-RUN /root/.local/bin/uv pip install wget
+RUN uv pip install wget
 ## RUN /root/.local/bin/uv pip install Flask==2.2
-RUN /root/.local/bin/uv pip install Flask
-RUN /root/.local/bin/uv pip install numpy pandas matplotlib
+RUN uv pip install Flask
+RUN uv pip install numpy pandas matplotlib
 # https://github.com/bndr/pipreqs
-RUN /root/.local/bin/uv pip install pipreqs
+RUN uv pip install pipreqs
 #rabbitMQ
-RUN /root/.local/bin/uv pip install --upgrade pika
+RUN uv pip install --upgrade pika
 #python3-dev removed here
 # modify yml files: 
-RUN /root/.local/bin/uv pip install pyyaml
+RUN uv pip install pyyaml
 
 # Handle csv meta data csv for web
 # https://pypi.org/project/csvw/
 # https://csvw.org/standards.html
-RUN /root/.local/bin/uv pip install csvw
+RUN uv pip install csvw
 
 ## Flask-2.3.2-py3-none-any.whl
 # blinker>=1.6.2   vs   blinker 1.4
 
-RUN /root/.local/bin/uv pip install aiohttp asyncio validators
+RUN uv pip install aiohttp asyncio validators
 
 # Freeze python requirements here:
 RUN mkdir -p /cre && \ 
-    /root/.local/bin/uv pip freeze --no-cache-dir > /cre/requirements.txt.orig
+    uv pip freeze --no-cache-dir > /cre/requirements.txt.orig
 
 RUN mkdir -p /cre && touch /cre/versions.txt && \
     echo "$(date +'%F %R') \tcreBuild \t $(date +'%Y.%m')" >> /cre/versions.txt && \
@@ -156,12 +154,12 @@ RUN mkdir -p /cre && touch /cre/versions.txt && \
     echo "$(date +'%F %R') \t  $(msmtp --version | grep version)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t  Java \t $(java -version 2>&1 | grep version)" >> /cre/versions.txt && \  
     echo "$(date +'%F %R') \t  Python3 \t $(python3 --version)" >> /cre/versions.txt && \ 
-    echo "$(date +'%F %R') \t   uv \t \t $(/root/.local/bin/uv --version 2>&1)" >> /cre/versions.txt && \
-    echo "$(date +'%F %R') \t   uv2 \t \t $(uv --version 2>&1)" >> /cre/versions.txt && \
-    echo "$(date +'%F %R') \t   numpy \t $(/root/.local/bin/uv -c 'import numpy; print(numpy.__version__)')" >> /cre/versions.txt && \
-    echo "$(date +'%F %R') \t   scipy \t $(/root/.local/bin/uv -c 'import scipy; print(scipy.__version__)')" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t   uv \t \t $(uv --version 2>&1)" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t   uv2 \t \t $(uv --version)" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t   numpy \t $(uv run python -c 'import numpy; print(numpy.__version__)')" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t   scipy \t $(uv run python -c 'import scipy; print(scipy.__version__)')" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   pandas \t $(uv run python -c 'import pandas; print(pandas.__version__)')" >> /cre/versions.txt && \
-    echo "$(date +'%F %R') \t   Flask \t $(/root/.local/bin/uv run python -m flask --version | grep Flask)" >> /cre/versions.txt
+    echo "$(date +'%F %R') \t   Flask \t $(uv run python -m flask --version | grep Flask)" >> /cre/versions.txt
   
 
 COPY cre/ /cre/

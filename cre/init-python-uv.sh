@@ -2,8 +2,6 @@
 
 # Creates requirements.txt
 
-uv --version
-
 if [ ! -f /cre/versions/requirements_$VERSION_YEAR.txt ]; then
   cp /cre/requirements.txt.orig /cre/python/requirements.txt
 fi
@@ -17,7 +15,7 @@ if [ ! -f /cre/python/requirements.txt ]; then
     # https://github.com/bndr/pipreqs
     ## pipreqs --mode gt --force /cre/python/
     ## pipreqs --mode compat --force /cre/python/
-    /root/.local/bin/uv pip install --no-cache-dir --root-user-action ignore -r /cre/python/requirements.txt
+    uv pip install --no-cache-dir --root-user-action ignore -r /cre/python/requirements.txt
     echo "requirements.txt written"
 fi
 
@@ -36,7 +34,7 @@ pipreqs --mode compat --diff /cre/python/requirements.txt /cre/python/
 pipreqs --mode compat --print /cre/python/
 
 # Install
-/root/.local/bin/uv pip install --no-cache-dir --root-user-action ignore -r /cre/python/requirements.txt
+uv pip install --no-cache-dir --root-user-action ignore -r /cre/python/requirements.txt
 
 # Run main.py or app.py or auto.py?
 
