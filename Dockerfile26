@@ -117,6 +117,8 @@ RUN wget -qO- https://astral.sh/uv/install.sh | sh
 
 #RUN /root/.local/bin/uv venv /cre/python ?
 RUN /root/.local/bin/uv venv 
+#RUN /root/.local/bin/uv python pin $PYTHON_VERSION
+RUN /root/.local/bin/uv python pin
 
 RUN /root/.local/bin/uv pip install wget
 ## RUN /root/.local/bin/uv pip install Flask==2.2
@@ -152,10 +154,11 @@ RUN mkdir -p /cre && touch /cre/versions.txt && \
     echo "$(date +'%F %R') \t  $(msmtp --version | grep version)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t  Java \t $(java -version 2>&1 | grep version)" >> /cre/versions.txt && \  
     echo "$(date +'%F %R') \t  Python3 \t $(python3 --version)" >> /cre/versions.txt && \ 
-    echo "$(date +'%F %R') \t   uv \t $(/root/.local/bin/uv --version 2>&1)" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t   uv \t \t $(/root/.local/bin/uv --version 2>&1)" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t   uv2 \t \t $(uv --version 2>&1)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   numpy \t $(python3 -c 'import numpy; print(numpy.__version__)')" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   scipy \t $(python3 -c 'import scipy; print(scipy.__version__)')" >> /cre/versions.txt && \
-    echo "$(date +'%F %R') \t   pandas \t $(python3 -c 'import pandas; print(pandas.__version__)')" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t   pandas \t $(/root/.local/bin/uv run python -c 'import pandas; print(pandas.__version__)')" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   Flask \t $(python3 -m flask --version | grep Flask)" >> /cre/versions.txt
   
 
