@@ -27,7 +27,7 @@ idna==3.11
 inflect==7.5.0
 isodate==0.7.2
 itsdangerous==2.2.0
-jaraco.context==6.1.0 # was jaraco.context==6.0.1
+jaraco.context==6.0.1
 jaraco.functools==4.1.0
 jaraco.text==4.0.0
 Jinja2==3.1.6
