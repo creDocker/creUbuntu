@@ -68,3 +68,10 @@ version-strategy and version file should be similiar to node/npm requirements (a
 
 
 https://fastapi.tiangolo.com  vs Flask
+
+
+https://www.portainer.io/
+
+https://www.heise.de/news/Ubuntu-26-04-LTS-Authd-fuer-Cloud-Authentifizierung-offiziell-verfuegbar-11205825.html
+
+

@@ -20,7 +20,7 @@ ENV CRE_VERSION=2026.0
 ## ENV UBUNTU_VERSION=26.04
 ENV UBUNTU_VERSION='Resolute Raccoon'    
 
-ENV OPENSSL_VERSION=3.5.3
+ENV OPENSSL_VERSION=3.5.5
 #8 needed for spark nlp ? 15?
 # WAS 21 == COMMON -> https://documentation.ubuntu.com/ubuntu-for-developers/reference/availability/java/
 # 24?
@@ -29,7 +29,7 @@ ENV JAVA_VERSION=21
 ENV JAVA_FAMILY=tem
 #ENV NODE_VERSION=12.16.1 use  creNode...
 # 3.14 ?
-ENV PYTHON_VERSION=3.13
+ENV PYTHON_VERSION=3.14
 
 ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8
@@ -103,6 +103,12 @@ ENV PIP_BREAK_SYSTEM_PACKAGES 1
 # python3-full ??
 RUN apt-get update && apt-get -y --no-install-recommends install python3 python3-setuptools python3-pip && apt-get clean 
 RUN apt-get  -y --no-install-recommends install python3-numpy python3-matplotlib 
+
+#install uv: 
+#RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+#RUN pip3 install uv
+RUN wget -qO- https://astral.sh/uv/install.sh | sh
+
 # NOT working in 24.0
 #RUN pip3 install --upgrade pip 
 # ERROR: Cannot uninstall pip 24.0, RECORD file not found. Hint: The package was installed by debian.
@@ -142,6 +148,7 @@ RUN mkdir -p /cre && touch /cre/versions.txt && \
     echo "$(date +'%F %R') \t  $(msmtp --version | grep version)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t  Java \t $(java -version 2>&1 | grep version)" >> /cre/versions.txt && \  
     echo "$(date +'%F %R') \t  Python3 \t $(python3 --version)" >> /cre/versions.txt && \ 
+    echo "$(date +'%F %R') \t   uv \t $(uv --version)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   numpy \t $(python3 -c 'import numpy; print(numpy.__version__)')" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   scipy \t $(python3 -c 'import scipy; print(scipy.__version__)')" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   pandas \t $(python3 -c 'import pandas; print(pandas.__version__)')" >> /cre/versions.txt && \
