@@ -115,31 +115,34 @@ RUN wget -qO- https://astral.sh/uv/install.sh | sh
 # ERROR: Cannot uninstall pip 24.0, RECORD file not found. Hint: The package was installed by debian.
 # Use pip from inside a venv. That's why you're encountering that error. 
 
-RUN pip3 install wget
-## RUN pip3 install Flask==2.2
-RUN pip3 install Flask
-RUN pip3 install numpy pandas matplotlib
+#RUN /root/.local/bin/uv venv /cre/python ?
+RUN /root/.local/bin/uv venv 
+
+RUN /root/.local/bin/uv pip install wget
+## RUN /root/.local/bin/uv pip install Flask==2.2
+RUN /root/.local/bin/uv pip install Flask
+RUN /root/.local/bin/uv pip install numpy pandas matplotlib
 # https://github.com/bndr/pipreqs
-RUN pip3 install pipreqs
+RUN /root/.local/bin/uv pip install pipreqs
 #rabbitMQ
-RUN pip3 install --upgrade pika
+RUN /root/.local/bin/uv pip install --upgrade pika
 #python3-dev removed here
 # modify yml files: 
-RUN pip3 install pyyaml
+RUN /root/.local/bin/uv pip install pyyaml
 
 # Handle csv meta data csv for web
 # https://pypi.org/project/csvw/
 # https://csvw.org/standards.html
-RUN pip3 install csvw
+RUN /root/.local/bin/uv pip install csvw
 
 ## Flask-2.3.2-py3-none-any.whl
 # blinker>=1.6.2   vs   blinker 1.4
 
-RUN pip3 install aiohttp asyncio validators
+RUN /root/.local/bin/uv pip install aiohttp asyncio validators
 
 # Freeze python requirements here:
 RUN mkdir -p /cre && \ 
-    pip3 freeze --no-cache-dir > /cre/requirements.txt.orig
+    /root/.local/bin/uv pip freeze --no-cache-dir > /cre/requirements.txt.orig
 
 RUN mkdir -p /cre && touch /cre/versions.txt && \
     echo "$(date +'%F %R') \tcreBuild \t $(date +'%Y.%m')" >> /cre/versions.txt && \
