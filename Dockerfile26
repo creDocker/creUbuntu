@@ -109,6 +109,8 @@ RUN apt-get  -y --no-install-recommends install python3-numpy python3-matplotlib
 #RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 #RUN pip3 install uv
 RUN wget -qO- https://astral.sh/uv/install.sh | sh
+ENV PATH="$PATH:/root/.local/bin/"
+RUN uv --version
 
 # NOT working in 24.0
 #RUN pip3 install --upgrade pip 
@@ -155,10 +157,10 @@ RUN mkdir -p /cre && touch /cre/versions.txt && \
     echo "$(date +'%F %R') \t  Java \t $(java -version 2>&1 | grep version)" >> /cre/versions.txt && \  
     echo "$(date +'%F %R') \t  Python3 \t $(python3 --version)" >> /cre/versions.txt && \ 
     echo "$(date +'%F %R') \t   uv \t \t $(/root/.local/bin/uv --version 2>&1)" >> /cre/versions.txt && \
-    echo "$(date +'%F %R') \t   uv2 \t \t $(/root/.local/bin/uv --version)" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t   uv2 \t \t $(uv --version 2>&1)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   numpy \t $(/root/.local/bin/uv -c 'import numpy; print(numpy.__version__)')" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   scipy \t $(/root/.local/bin/uv -c 'import scipy; print(scipy.__version__)')" >> /cre/versions.txt && \
-    echo "$(date +'%F %R') \t   pandas \t $(/root/.local/bin/uv run python -c 'import pandas; print(pandas.__version__)')" >> /cre/versions.txt && \
+    echo "$(date +'%F %R') \t   pandas \t $(uv run python -c 'import pandas; print(pandas.__version__)')" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   Flask \t $(/root/.local/bin/uv run python -m flask --version | grep Flask)" >> /cre/versions.txt
   
 
