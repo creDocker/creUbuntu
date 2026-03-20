@@ -157,7 +157,6 @@ RUN mkdir -p /cre && touch /cre/versions.txt && \
     echo "$(date +'%F %R') \t   uv \t \t $(uv --version 2>&1)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   uv2 \t \t $(uv --version)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   numpy \t $(uv run python -c 'import numpy; print(numpy.__version__)')" >> /cre/versions.txt && \
-    echo "$(date +'%F %R') \t   scipy \t $(uv run python -c 'import scipy; print(scipy.__version__)')" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   pandas \t $(uv run python -c 'import pandas; print(pandas.__version__)')" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   Flask \t $(uv run python -m flask --version | grep Flask)" >> /cre/versions.txt
   
