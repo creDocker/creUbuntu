@@ -17,7 +17,7 @@ jobs:
     container:
       image: credocker/creubuntu:2026.0
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set ownership
         run: |
           # this is to fix GIT not liking owner of the checkout dir
@@ -39,7 +39,7 @@ jobs:
         run: (cp /cre/requirements.txt.orig cre/versions/requirements_2026.txt)
 #
       - name: Submit changes       
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@v10
         with:
 #          pull: '--rebase --autostash ...'
           add: 'cre/versions/versions_2026.txt cre/versions/requirements_2026.txt'
