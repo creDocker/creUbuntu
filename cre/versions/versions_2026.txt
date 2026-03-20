@@ -7,7 +7,7 @@ creBuild 	 2026.03
   Python3 	 Python 3.14.3
    uv 	 
    uv2 	 
-   numpy 	 
+   numpy 	 2.4.3
    scipy 	 
    pandas 	 3.0.1
    Flask 	 Flask 3.1.3
