@@ -95,16 +95,16 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y openjdk-$JAVA_VERSION-jre && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-ENV JAVA_HOME /usr/lib/jvm/java-$JAVA_VERSION-openjdk-amd64/
+ENV JAVA_HOME=/usr/lib/jvm/java-$JAVA_VERSION-openjdk-amd64/
 RUN export JAVA_HOME
 
 #Add Python
-ENV PIP_BREAK_SYSTEM_PACKAGES 1
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
 # python3-full ??
 RUN apt-get update && apt-get -y --no-install-recommends install python3 python3-setuptools python3-pip && apt-get clean 
 RUN apt-get  -y --no-install-recommends install python3-numpy python3-matplotlib 
 
-#install uv: 
+#install uv:  https://docs.astral.sh/uv/
 #RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 #RUN pip3 install uv
 RUN wget -qO- https://astral.sh/uv/install.sh | sh
@@ -168,7 +168,7 @@ RUN dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n
 VOLUME ["/cre/python"]
 
 # Set environment variables.
-ENV HOME /cre
+ENV HOME=/cre
 
 # Define working directory.
 WORKDIR /cre
