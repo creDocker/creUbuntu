@@ -106,17 +106,9 @@ RUN apt-get update && apt-get -y --no-install-recommends install python3 python3
 RUN apt-get  -y --no-install-recommends install python3-numpy python3-matplotlib 
 
 #install uv:  https://docs.astral.sh/uv/
-#RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-#RUN pip3 install uv
 RUN wget -qO- https://astral.sh/uv/install.sh | sh
 ENV PATH="$PATH:/root/.local/bin/"
 RUN uv --version
-
-# NOT working in 24.0
-#RUN pip3 install --upgrade pip 
-# ERROR: Cannot uninstall pip 24.0, RECORD file not found. Hint: The package was installed by debian.
-# Use pip from inside a venv. That's why you're encountering that error. 
-
 RUN uv venv 
 RUN uv python pin $PYTHON_VERSION
 
@@ -153,7 +145,7 @@ RUN mkdir -p /cre && touch /cre/versions.txt && \
     echo "$(date +'%F %R') \t  $(openssl version)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t  $(msmtp --version | grep version)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t  Java \t $(java -version 2>&1 | grep version)" >> /cre/versions.txt && \  
-    echo "$(date +'%F %R') \t  Python3 \t $(python3 --version)" >> /cre/versions.txt && \ 
+    echo "$(date +'%F %R') \t  Python3 \t $(uv run python --version)" >> /cre/versions.txt && \ 
     echo "$(date +'%F %R') \t   uv \t \t $(uv --version 2>&1)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   uv2 \t \t $(/root/.local/bin/uv --version 2>&1)" >> /cre/versions.txt && \
     echo "$(date +'%F %R') \t   numpy \t $(uv run python -c 'import numpy; print(numpy.__version__)')" >> /cre/versions.txt && \
