@@ -54,8 +54,8 @@ LABEL Name="Ubuntu for CRE" \
 RUN apt clean
 
 ## NOT WORKING IN >= 2025.10 ??
-RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
-    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+# RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+#     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
@@ -77,8 +77,8 @@ RUN \
 # https://wlanboy.com/tutorial/rabbitmq-bash/
 
 ## NOT WORKING IN >= 2025.10 ??
-## RUN locale-gen en_US en_US.UTF-8 && \ 
-##    update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+RUN locale-gen en_US en_US.UTF-8 && \ 
+   update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
@@ -90,7 +90,6 @@ RUN apt-get update && apt-cache madison openjdk-23-jre
 RUN apt-get update && apt-cache madison openjdk-24-jre
 
 
-## NOT WORKING IN >= 2025.10 ??  version??
 #Add Java JDK
 RUN apt-get update && \
     apt-get install --no-install-recommends -y openjdk-$JAVA_VERSION-jre && \
