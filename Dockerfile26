@@ -18,8 +18,8 @@ ARG BUILD_TAG=latest
 #          0.yyyy for development - tagged automatically if base functionality is working 
 ENV CRE_VERSION=2026.0 
 
-## ENV UBUNTU_VERSION=26.04
-ENV UBUNTU_VERSION='Resolute Raccoon'    
+ENV UBUNTU_VERSION=26.04
+#ENV UBUNTU_VERSION='Resolute Raccoon'    
 
 ENV OPENSSL_VERSION=3.5.5
 #8 needed for spark nlp ? 15?
