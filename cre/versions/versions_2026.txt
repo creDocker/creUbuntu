@@ -1,5 +1,5 @@
 creBuild 	 2026.04
- creUbuntu 	 Resolute Raccoon (development branch)
+ creUbuntu 	 26.04 LTS
   UbuntuName 	 resolute
   OpenSSL 3.5.5 27 Jan 2026 (Library: OpenSSL 3.5.5 27 Jan 2026)
   msmtp version 1.8.32
