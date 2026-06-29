@@ -8,5 +8,5 @@ creBuild 	 2026.06
    uv 	 
    uv2 	 
    numpy 	 2.5.0
-   pandas 	 3.0.3
+   pandas 	 3.0.4
    Flask 	 Flask 3.1.3
