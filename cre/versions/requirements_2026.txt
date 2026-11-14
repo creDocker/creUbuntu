@@ -69,11 +69,11 @@ referencing==0.37.0
 requests==2.34.2
 rfc3986==1.5.0
 rpds-py==2026.9.1
-soupsieve==4.0.1
+soupsieve==4.1
 stack-data==0.6.3
 termcolor==3.3.0
 tinycss2==1.5.1
-tornado==6.6
+tornado==6.6.1
 traitlets==5.16.1
 typing-extensions==4.16.0
 tzdata==2026.6
