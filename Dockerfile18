@@ -11,6 +11,7 @@ MAINTAINER Michael Kahle <michael.kahle@yahoo.de>
 ARG BUILD_YEAR=2018
 ARG BUILD_MONTH=0
 ARG BUILD_TAG=latest
+ARG UBUNTU_PRO_TOKEN=""
 
 # version: yyyy.n for stable versions 
 #          0.yyyy for development - tagged automatically if base functionality is working 
@@ -98,6 +99,19 @@ RUN pip3 install pyyaml
 # https://pypi.org/project/csvw/
 # https://csvw.org/standards.html
 RUN pip3 install csvw
+
+# PRO
+RUN apt-get update  && apt-get -y --no-install-recommends install ubuntu-pro-client
+## RUN pro status
+RUN pro attach $UBUNTU_PRO_TOKEN
+ENV UBUNTU_PRO_TOKEN=
+RUN unset UBUNTU_PRO_TOKEN
+RUN pro status
+#RUN pro enable esm-infra
+#RUN pro enable esm-apps
+RUN apt-get update 
+RUN apt-get -y upgrade
+## RUN env
 
 # Freeze python requirements here:
 RUN mkdir -p /cre && \ 
