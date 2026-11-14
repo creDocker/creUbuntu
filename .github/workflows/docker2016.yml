@@ -34,6 +34,7 @@ jobs:
         with:
           file: ./Dockerfile16
           push: true
+          build-args: "UBUNTU_PRO_TOKEN=${{ secrets.UBUNTU_PRO_TOKEN }}"
           tags: credocker/creubuntu:check16
 
       -
@@ -47,6 +48,7 @@ jobs:
         with:
           file: ./Dockerfile16
           push: true
+          build-args: "UBUNTU_PRO_TOKEN=${{ secrets.UBUNTU_PRO_TOKEN }}"
           tags: credocker/creubuntu:2016.0 
 
 
